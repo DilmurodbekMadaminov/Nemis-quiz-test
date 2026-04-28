@@ -65,7 +65,13 @@ const App: React.FC = () => {
   };
 
   const handleNext = () => {
+    // We need to re-fetch questions here to ensure we have the correct length 
+    // in case of closure staleness, although state.selectedVariant should be stable.
+    // Ideally we rely on current state via functional update, but accessing props/state outside is cleaner if stable.
+    
+    // Using functional update to access the latest state for index
     setState(prev => {
+      // Guard: if we are already showing results or stopped, do nothing
       if (prev.showResults || !prev.isStarted || !prev.selectedVariant) return prev;
 
       const questions = getQuestionsByVariant(prev.selectedVariant);
@@ -80,6 +86,7 @@ const App: React.FC = () => {
       }
     });
 
+    // Reset local UI state (these don't depend on prev state in the same critical way for logic flow)
     setIsAnswered(false);
     setSelectedOption(null);
   };
@@ -95,16 +102,18 @@ const App: React.FC = () => {
     });
   };
 
+  // --- RENDERING VIEWS ---
+
   if (!state.isStarted) {
     return (
       <div className="min-h-screen bg-[#F0F2F5] p-4 md:p-8">
         <div className="max-w-4xl mx-auto">
           <header className="mb-10 text-center">
-            <div className="inline-flex p-3 bg-red-600 rounded-2xl mb-4 shadow-lg shadow-red-200">
+            <div className="inline-flex p-3 bg-blue-600 rounded-2xl mb-4 shadow-lg shadow-blue-200">
               <Trophy className="text-white w-8 h-8" />
             </div>
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">Nemis Tili Quiz</h1>
-            <p className="text-slate-500">1-kurs talabalari uchun yakuniy test (500 ta savol)</p>
+            <h1 className="text-3xl font-bold text-slate-900 mb-2">AKT Quiz</h1>
+            <p className="text-slate-500">Iqtisodiyotda axborot tizimlari (250 ta savol)</p>
           </header>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -114,10 +123,10 @@ const App: React.FC = () => {
               <button
                 key={v}
                 onClick={() => selectVariant(v)}
-                className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-red-400 transition-all text-left group"
+                className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-400 transition-all text-left group"
               >
-                <div className="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-50 transition-colors">
-                  <LayoutGrid className="w-5 h-5 text-slate-400 group-hover:text-red-600" />
+                <div className="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-50 transition-colors">
+                  <LayoutGrid className="w-5 h-5 text-slate-400 group-hover:text-blue-600" />
                 </div>
                 <h3 className="font-bold text-slate-800">Variant {v}</h3>
                 <p className="text-xs text-slate-400 mt-1">{questionCount} ta savol</p>
@@ -143,7 +152,7 @@ const App: React.FC = () => {
           
           <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="bg-slate-50 p-4 rounded-2xl">
-              <p className="text-2xl font-bold text-red-600">{state.score}/{totalQ}</p>
+              <p className="text-2xl font-bold text-blue-600">{state.score}/{totalQ}</p>
               <p className="text-xs text-slate-400 uppercase tracking-wider font-semibold">To'g'ri</p>
             </div>
             <div className="bg-slate-50 p-4 rounded-2xl">
@@ -155,7 +164,7 @@ const App: React.FC = () => {
           <div className="space-y-3">
             <button 
               onClick={() => selectVariant(state.selectedVariant!)}
-              className="w-full py-4 bg-red-600 text-white rounded-2xl font-bold shadow-lg shadow-red-100 flex items-center justify-center gap-2 hover:bg-red-700 transition-all"
+              className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-lg shadow-blue-100 flex items-center justify-center gap-2 hover:bg-blue-700 transition-all"
             >
               <RotateCcw className="w-5 h-5" /> Qayta urinish
             </button>
@@ -171,6 +180,7 @@ const App: React.FC = () => {
     );
   }
 
+  // Safety check for currentQuestion
   if (!currentQuestion) {
     return (
       <div className="min-h-screen bg-[#F0F2F5] flex items-center justify-center">
@@ -181,6 +191,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F0F2F5] flex flex-col">
+      {/* Navigation Header */}
       <nav className="bg-white border-b border-slate-200 px-4 py-4 sticky top-0 z-10">
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <button onClick={resetToHome} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
@@ -190,25 +201,28 @@ const App: React.FC = () => {
             <h2 className="font-bold text-slate-900">Variant {state.selectedVariant}</h2>
             <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Savol {state.currentQuestionIndex + 1}/{currentQuestions.length}</p>
           </div>
-          <div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center">
-            <HelpCircle className="w-5 h-5 text-red-600" />
+          <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center">
+            <HelpCircle className="w-5 h-5 text-blue-600" />
           </div>
         </div>
       </nav>
 
       <main className="flex-1 overflow-y-auto p-4 md:p-6">
         <div className="max-w-2xl mx-auto space-y-6">
+          
+          {/* Progress Bar */}
           <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-red-600 transition-all duration-500 ease-out" 
+              className="h-full bg-blue-600 transition-all duration-500 ease-out" 
               style={{ width: `${((state.currentQuestionIndex + 1) / currentQuestions.length) * 100}%` }}
             />
           </div>
 
+          {/* Question "Bubble" */}
           <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 md:p-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="flex items-start gap-3 mb-6">
               <div className="mt-1">
-                <MessageCircle className="w-5 h-5 text-red-500" />
+                <MessageCircle className="w-5 h-5 text-blue-500" />
               </div>
               <p className="text-lg md:text-xl font-medium text-slate-800 leading-relaxed">
                 {currentQuestion.text}
@@ -233,7 +247,7 @@ const App: React.FC = () => {
                     icon = <XCircle className="w-5 h-5 text-red-600" />;
                   }
                 } else if (isSelected) {
-                  btnStyle = "bg-red-50 border-red-200 ring-1 ring-red-500 text-red-700";
+                  btnStyle = "bg-blue-50 border-blue-200 ring-1 ring-blue-500 text-blue-700";
                 }
 
                 return (
@@ -245,7 +259,7 @@ const App: React.FC = () => {
                   >
                     <div className="flex items-center gap-4">
                       <span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-colors ${
-                        isSelected ? 'bg-red-600 text-white' : 
+                        isSelected ? 'bg-blue-600 text-white' : 
                         isAnswered && isCorrect ? 'bg-green-600 text-white' : 
                         isAnswered && isSelected ? 'bg-red-600 text-white' : 
                         'bg-white text-green-700 border border-green-200'
@@ -261,6 +275,7 @@ const App: React.FC = () => {
             </div>
           </div>
 
+          {/* Quick Score Badge */}
           <div className="flex justify-center">
             <div className="bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm flex items-center gap-2">
               <Zap className="w-4 h-4 text-yellow-500 fill-yellow-500" />
@@ -270,6 +285,7 @@ const App: React.FC = () => {
         </div>
       </main>
 
+      {/* Optional Manual Footer */}
       {isAnswered && (
         <div className="bg-white border-t border-slate-200 p-4 animate-in slide-in-from-bottom-full duration-300">
            <div className="max-w-2xl mx-auto flex justify-between items-center">

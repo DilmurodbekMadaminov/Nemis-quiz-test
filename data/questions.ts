@@ -1,527 +1,3313 @@
-
 import { Question } from '../types';
 
+// The full database of questions
 export const allQuestions: Question[] = [
-  { id: 1, text: "Wie heißt du?", options: ["Ich heiße Markus.", "Ich heiße Stadt.", "Du heißt Kaffee.", "Er heiße Auto."], correctAnswer: 0 },
-  { id: 2, text: "Woher kommen Sie?", options: ["Ich komme Uhr.", "Ich komme aus Usbekistan.", "Ich komme kalt.", "Ich komme Haus."], correctAnswer: 1 },
-  { id: 3, text: "Er ___ Lehrer von Beruf.", options: ["bist", "seid", "ist", "bin"], correctAnswer: 2 },
-  { id: 4, text: "Haben Sie Geschwister?", options: ["Ja, ich bin Schwester.", "Ja, ich habe ein Tisch.", "Ja, ich Schwester habe.", "Ja, ich habe eine Schwester."], correctAnswer: 3 },
-  { id: 5, text: "„der Freund“ – bu so‘zning o‘zbekcha ma’nosi qaysi?", options: ["do‘st", "oila", "telefon", "kitob"], correctAnswer: 0 },
-  { id: 6, text: "Wo wohnen Sie?", options: ["Ich wohnen Berlin.", "Ich wohne in Berlin.", "Ich wohnt Berlin.", "Ich wohne Auto."], correctAnswer: 1 },
-  { id: 7, text: "Wir ___ zwei Kinder.", options: ["habt", "hat", "haben", "hast"], correctAnswer: 2 },
-  { id: 8, text: "„die Stadt“ nimani bildiradi?", options: ["uy", "daraxt", "dokon", "shahar"], correctAnswer: 3 },
-  { id: 9, text: "Wie alt bist du? – Ich ___ 20 Jahre alt.", options: ["bin", "bist", "ist", "seid"], correctAnswer: 0 },
-  { id: 10, text: "Herr Klein, sprechen Sie Deutsch?", options: ["Ja, sprechen.", "Ja, ein bisschen.", "Ja, ich Deutsch.", "Ja, ich bin Deutsch sprechen."], correctAnswer: 1 },
-  { id: 11, text: "Woher kommt er?", options: ["Er kommt Haus.", "Er Spanien bin.", "Er kommt aus Spanien.", "Er kommt Auto."], correctAnswer: 2 },
-  { id: 12, text: "Ich ___ Ali.", options: ["heißt", "heißen", "heiß", "heiße"], correctAnswer: 3 },
-  { id: 13, text: "Sprechen Sie Englisch?", options: ["Ja, ein wenig.", "Ja, ich sprechen.", "Ja, sprechen Sie.", "Ja, ich bin Englisch."], correctAnswer: 0 },
-  { id: 14, text: "Wir ___ in Taschkent.", options: ["wohnt", "wohnen", "wohne", "wohnst"], correctAnswer: 1 },
-  { id: 15, text: "„die Familie“ nimani anglatadi?", options: ["do‘st", "ovqat", "oila", "ish"], correctAnswer: 2 },
-  { id: 16, text: "Wie ist Ihr Name?", options: ["Mein Name heißt Petra.", "Ich Name Petra.", "Name meine Petra.", "Mein Name ist Petra."], correctAnswer: 3 },
-  { id: 17, text: "Er ___ 30 Jahre alt.", options: ["ist", "bist", "bin", "seid"], correctAnswer: 0 },
-  { id: 18, text: "Hast du Zeit?", options: ["Ja, ich Zeit.", "Ja, ich habe Zeit.", "Ja, habe bin.", "Ja, du hast Zeit ich."], correctAnswer: 1 },
-  { id: 19, text: "„das Land“ – bu so‘z qaysi ma’noda?", options: ["shahar", "uy", "mamlakat", "kitob"], correctAnswer: 2 },
-  { id: 20, text: "Ich ___ kein Auto.", options: ["hat", "habt", "haben?", "habe"], correctAnswer: 3 },
-  { id: 21, text: "Wo ist das Café?", options: ["Es ist dort.", "Es bist Café.", "Dort ist du.", "Es bin dort."], correctAnswer: 0 },
-  { id: 22, text: "Sie ___ sehr freundlich.", options: ["seid", "sind", "bist", "bin"], correctAnswer: 1 },
-  { id: 23, text: "Wie viele Geschwister hast du?", options: ["Ich bin zwei Geschwister.", "Ich Geschwister du.", "Ich habe zwei Geschwister.", "Ich habe zwei Jahr."], correctAnswer: 2 },
-  { id: 24, text: "Ich komme aus Deutschland. Und du? Woher ___ du?", options: ["komme", "kommt", "kommen", "kommst"], correctAnswer: 3 },
-  { id: 25, text: "„der Lehrer“ so‘zining o‘zbekcha tarjimasi qaysi?", options: ["o‘qituvchi", "o‘quvchi", "xizmatkor", "doktor"], correctAnswer: 0 },
-  { id: 26, text: "Wir ___ eine Wohnung in Berlin.", options: ["habt", "haben", "hast", "hat"], correctAnswer: 1 },
-  { id: 27, text: "Er spricht Deutsch. Und du? Sprichst du ___?", options: ["immer", "viele", "auch", "heute"], correctAnswer: 2 },
-  { id: 28, text: "Ich ___ in der Türkei geboren.", options: ["bist", "seid", "ist", "bin"], correctAnswer: 3 },
-  { id: 29, text: "„die Straße“ nimani bildiradi?", options: ["ko‘cha", "shahar", "mamlakat", "oila"], correctAnswer: 0 },
-  { id: 30, text: "Wie geht es Ihnen?", options: ["Danke, bin gut.", "Danke, gut.", "Gut es geht.", "Danke, ich gut habe."], correctAnswer: 1 },
-  { id: 31, text: "Wer ist das?", options: ["Das bin du Bruder.", "Er Bruder ist.", "Das ist mein Bruder.", "Mein Bruder du."], correctAnswer: 2 },
-  { id: 32, text: "Wie heißt Ihre Frau?", options: ["Er heißt Anna.", "Du heißt Frau.", "Sie heißt wohnen.", "Sie heißt Anna."], correctAnswer: 3 },
-  { id: 33, text: "Wir ___ aus Österreich.", options: ["kommen", "kommst", "kommt", "komme"], correctAnswer: 0 },
-  { id: 34, text: "Haben Sie eine Frage?", options: ["Ja, ich Frage bin.", "Ja, ich habe eine Frage.", "Ja, ich haben Frage.", "Ja, habe du Frage."], correctAnswer: 1 },
-  { id: 35, text: "„der Arzt“ so‘zining o‘zbekchasi nima?", options: ["haydovchi", "ustoz", "shifokor", "mehmon"], correctAnswer: 2 },
-  { id: 36, text: "Wo wohnt ihr?", options: ["Wir wohne Hamburg.", "Ihr wohnen Hamburg.", "Wir wohnt Hamburg.", "Wir wohnen in Hamburg."], correctAnswer: 3 },
-  { id: 37, text: "Ich ___ kein Geld.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 38, text: "„der Name“ – bu nima?", options: ["uy", "ism", "ko‘cha", "kitob"], correctAnswer: 1 },
-  { id: 39, text: "Wie alt ist er?", options: ["Er alt ist 25.", "Er hat 25 alt.", "Er ist 25 Jahre alt.", "Er Jahre bin 25."], correctAnswer: 2 },
-  { id: 40, text: "Wir ___ Lehrer.", options: ["seid", "bist", "bin", "sind"], correctAnswer: 3 },
-  { id: 41, text: "Sprechen Sie Arabisch?", options: ["Nein, ich spreche kein Arabisch.", "Nein, ich sprechen Arabisch nicht.", "Nein, spreche ich Arabisch.", "Nein, ich bin Arabisch."], correctAnswer: 0 },
-  { id: 42, text: "Was ist richtig?", options: ["Ich kommen Russland.", "Ich komme aus Russland.", "Ich kommt aus Russland.", "Ich Russisch komme."], correctAnswer: 1 },
-  { id: 43, text: "„die Welt“ qaysi ma’noni bildiradi?", options: ["shahar", "maktab", "dunyo", "transport"], correctAnswer: 2 },
-  { id: 44, text: "Ich ___ Studentin.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 3 },
-  { id: 45, text: "Wie geht’s? – ___", options: ["Gut, danke.", "Gut bin danke.", "Danke geht gut.", "Danke, ich gut."], correctAnswer: 0 },
-  { id: 46, text: "Wo ___ der Bus?", options: ["bist", "ist", "seid", "bin"], correctAnswer: 1 },
-  { id: 47, text: "Er ___ keine Geschwister.", options: ["hast", "haben", "hat", "habt"], correctAnswer: 2 },
-  { id: 48, text: "„die Nummer“ – tarjimasi qaysi?", options: ["qog‘oz", "ko‘ylak", "xonadon", "raqam"], correctAnswer: 3 },
-  { id: 49, text: "Woher ___ du?", options: ["kommst", "kommt", "komme", "kommen?"], correctAnswer: 0 },
-  { id: 50, text: "Ich ___ aus Italien.", options: ["komme", "komme", "kommst", "kommen"], correctAnswer: 1 },
-  { id: 51, text: "Wie heißt die Stadt?", options: ["Er heißt München.", "Die Stadt bin München.", "Sie heißt München.", "Die Stadt sprechen München."], correctAnswer: 2 },
-  { id: 52, text: "Wir ___ nicht hier.", options: ["wohnt", "wohnst", "wohne", "wohnen"], correctAnswer: 3 },
-  { id: 53, text: "Er ___ Deutsch und Englisch.", options: ["spricht", "sprechen", "spreche", "sprechest"], correctAnswer: 0 },
-  { id: 54, text: "„das Zimmer“ – nima?", options: ["shahar", "xona", "uy hayvoni", "daraxt"], correctAnswer: 1 },
-  { id: 55, text: "Wie spät ist es?", options: ["Es Uhr zehn.", "Ist es zehn.", "Es ist zehn Uhr.", "Uhr ist zehn ich."], correctAnswer: 2 },
-  { id: 56, text: "Sie ___ meine Freundin.", options: ["bist", "seid", "bin", "ist"], correctAnswer: 3 },
-  { id: 57, text: "Wir ___ morgen frei.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 58, text: "„die Arbeit“ so‘zining ma’nosi nima?", options: ["shokolad", "ish", "xonadon", "havo"], correctAnswer: 1 },
-  { id: 59, text: "___ du Deutsch?", options: ["Spreche", "Sprechen", "Sprichst", "Spricht"], correctAnswer: 2 },
-  { id: 60, text: "Ich ___ in einer großen Stadt.", options: ["wohnst", "wohnt", "wohnet", "wohne"], correctAnswer: 3 },
-  { id: 61, text: "Woher kommt ihr?", options: ["Wir kommen aus der Türkei.", "Wir kommt Türkei.", "Ihr kommen die Türkei.", "Wir komme Türkei."], correctAnswer: 0 },
-  { id: 62, text: "Ich ___ 19 Jahre alt.", options: ["bist", "bin", "seid", "ist"], correctAnswer: 1 },
-  { id: 63, text: "Haben Sie ein Auto?", options: ["Ja, ich bin Auto.", "Ich habe Auto bin.", "Ja, ich habe ein Auto.", "Ich Auto habe."], correctAnswer: 2 },
-  { id: 64, text: "Wie heißt er?", options: ["Er heißen Daniel.", "Er heißt du.", "Daniel heißt er bin.", "Er heißt Daniel."], correctAnswer: 3 },
-  { id: 65, text: "„die Sprache“ – nima?", options: ["til", "ko‘cha", "kitob", "xonadon"], correctAnswer: 0 },
-  { id: 66, text: "Wir ___ eine große Familie.", options: ["habt", "haben", "hast", "hat"], correctAnswer: 1 },
-  { id: 67, text: "Wo wohnen Sie?", options: ["Ich wohne München bin.", "Ich wohnt München.", "Ich wohne in München.", "Ich München wohne."], correctAnswer: 2 },
-  { id: 68, text: "Er ___ aus Polen.", options: ["kommen", "komme", "kommst", "kommt"], correctAnswer: 3 },
-  { id: 69, text: "Wie spät ist es?", options: ["Es ist sieben Uhr.", "Es sieben Uhr ist.", "Sieben ist Uhr.", "Uhr sieben die."], correctAnswer: 0 },
-  { id: 70, text: "„der Schüler“ nimani anglatadi?", options: ["ustoz", "o‘quvchi", "mehmon", "haydovchi"], correctAnswer: 1 },
-  { id: 71, text: "Ich ___ kein Handy.", options: ["hat", "habt", "habe", "haben?"], correctAnswer: 2 },
-  { id: 72, text: "Wer sind Sie?", options: ["Ich bin bin Müller.", "Sie Frau Müller.", "Ich Müller ist.", "Ich bin Frau Müller."], correctAnswer: 3 },
-  { id: 73, text: "Wir ___ heute keinen Kurs.", options: ["haben", "habt", "hast", "hat"], correctAnswer: 0 },
-  { id: 74, text: "Sie ___ in Berlin.", options: ["wohnen", "wohnt", "wohnst", "wohne"], correctAnswer: 1 },
-  { id: 75, text: "Sprechen Sie Italienisch?", options: ["Nein, spreche Italienisch.", "Ich bin kein Italienisch.", "Nein, ich spreche kein Italienisch.", "Nein, ich Sprache Italienisch."], correctAnswer: 2 },
-  { id: 76, text: "Wo ist das Hotel?", options: ["Hotel ist vorne.", "Es Hotel bin.", "Da vorne ist du.", "Es ist da vorne."], correctAnswer: 3 },
-  { id: 77, text: "„der Beruf“ – tarjima qiling.", options: ["kasb", "oila", "xarita", "sham"], correctAnswer: 0 },
-  { id: 78, text: "Er ___ Lehrer.", options: ["bist", "ist", "bin", "seid"], correctAnswer: 1 },
-  { id: 79, text: "Wie geht es dir?", options: ["Gut dir danke.", "Danke geht.", "Gut, danke.", "Ich gut danke."], correctAnswer: 2 },
-  { id: 80, text: "Ich ___ in einer kleinen Stadt.", options: ["wohnen", "wohnet", "wohnt", "wohne"], correctAnswer: 3 },
-  { id: 81, text: "Hast du eine Schwester?", options: ["Ja, ich habe eine Schwester.", "Ja, ich Schwester habe bin.", "Ich habe Schwester du.", "Ja, eine Schwester bin."], correctAnswer: 0 },
-  { id: 82, text: "Woher ___ ihr?", options: ["komme", "kommt", "kommen?", "kommst"], correctAnswer: 1 },
-  { id: 83, text: "„die Mutter“ – ma’nosi qaysi?", options: ["singil", "o‘g‘il", "ona", "ruchka"], correctAnswer: 2 },
-  { id: 84, text: "Wir ___ aus Usbekistan.", options: ["kommt", "komme", "kamm", "kommen"], correctAnswer: 3 },
-  { id: 85, text: "Er ___ kein Deutsch.", options: ["spricht", "sprechen", "spreche", "sprechest"], correctAnswer: 0 },
-  { id: 86, text: "Wie heißt das Land?", options: ["Land heißt bin Italien.", "Es heißt Italien.", "Er heißt Italien.", "Italien bin heißt."], correctAnswer: 1 },
-  { id: 87, text: "Wo arbeiten Sie?", options: ["Ich arbeite Krankenhaus.", "Ich arbeite bin.", "Ich arbeite im Krankenhaus.", "Krankenhaus arbeite."], correctAnswer: 2 },
-  { id: 88, text: "„die Frage“ – nima?", options: ["daraxt", "olma", "maktab", "savol"], correctAnswer: 3 },
-  { id: 89, text: "Ich ___ müde.", options: ["bin", "bist", "seid", "ist"], correctAnswer: 0 },
-  { id: 90, text: "Sie ___ sehr nett.", options: ["bist", "ist", "bin", "seid"], correctAnswer: 1 },
-  { id: 91, text: "Wo wohnt er?", options: ["Er wohne Köln.", "Er wohnt Haus.", "Er wohnt in Köln.", "Er wohnt du Köln."], correctAnswer: 2 },
-  { id: 92, text: "Ich ___ aus China.", options: ["kommt", "kommst", "kommen", "komme"], correctAnswer: 3 },
-  { id: 93, text: "Haben Sie eine Familie?", options: ["Ja, ich habe eine Familie.", "Ja, ich Familie bin.", "Ja, habe Familie du.", "Ja, Familie ich haben."], correctAnswer: 0 },
-  { id: 94, text: "„der Vater“ – ma’nosi qaysi?", options: ["bobo", "ota", "o‘g‘il", "do‘st"], correctAnswer: 1 },
-  { id: 95, text: "Wie heißt Ihr Sohn?", options: ["Du heißt Lukas.", "Sohn heißt Sie.", "Er heißt Lukas.", "Er heißen Lukas."], correctAnswer: 2 },
-  { id: 96, text: "Wir ___ kein Auto.", options: ["habt", "hat", "hast", "haben"], correctAnswer: 3 },
-  { id: 97, text: "Woher kommt ihr?", options: ["Wir kommen aus Frankreich.", "Wir kommt Frankreich.", "Ihr kommen Frankreich.", "Wir komme Frankreich."], correctAnswer: 0 },
-  { id: 98, text: "„das Telefon“ – tarjima qiling", options: ["shahar", "telefon", "daraxt", "xarita"], correctAnswer: 1 },
-  { id: 99, text: "Sie ___ Ärztin von Beruf.", options: ["bist", "seid", "ist", "bin"], correctAnswer: 2 },
-  { id: 100, text: "Wie alt seid ihr?", options: ["Wir seid alt 20.", "Wir alt Jahre.", "Ihr seid 20 bin.", "Wir sind 20 Jahre alt."], correctAnswer: 3 },
-  { id: 101, text: "Sprechen Sie Deutsch?", options: ["Ja, ein bisschen.", "Ja, Deutsch bin.", "Ich sprechen Deutsch.", "Deutsch ein bisschen ich."], correctAnswer: 0 },
-  { id: 102, text: "Er ___ drei Kinder.", options: ["haben", "hat", "habt", "hast"], correctAnswer: 1 },
-  { id: 103, text: "Ich ___ Student.", options: ["bist", "seid", "bin", "ist"], correctAnswer: 2 },
-  { id: 104, text: "„die Schule“ – bu nima?", options: ["kasalxona", "uy", "ko‘prik", "maktab"], correctAnswer: 3 },
-  { id: 105, text: "Wo arbeitet sie?", options: ["Sie arbeitet im Krankenhaus.", "Sie arbeiten Krankenhaus.", "Sie arbeitet bin.", "Krankenhaus sie arbeiten."], correctAnswer: 0 },
-  { id: 106, text: "Er ___ gut Deutsch.", options: ["sprechen", "spricht", "sprechest", "spreche"], correctAnswer: 1 },
-  { id: 107, text: "Wie geht es dir?", options: ["Sehr geht dir danke.", "Danke geht.", "Sehr gut, danke.", "Gut ich danke."], correctAnswer: 2 },
-  { id: 108, text: "„der Lehrer“ – qaysi ma’noda?", options: ["talaba", "shahar", "kasalxona", "o‘qituvchi"], correctAnswer: 3 },
-  { id: 109, text: "Wir ___ heute keine Zeit.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 110, text: "Wie heißt die Frau?", options: ["Er heißt Maria.", "Sie heißt Maria.", "Maria du heißt.", "Frau bin Maria."], correctAnswer: 1 },
-  { id: 111, text: "Wo ___ ihr?", options: ["wohne", "wohnst", "wohnt", "wohnest"], correctAnswer: 2 },
-  { id: 112, text: "„die Straße“ – tarjimasi qaysi?", options: ["maktab", "daraxt", "sham", "ko‘cha"], correctAnswer: 3 },
-  { id: 113, text: "Ich ___ kein Buch.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 114, text: "Woher kommt deine Mutter?", options: ["Sie kommt Russland bin.", "Sie kommt aus Russland.", "Er kommt aus Russland.", "Mutter kommen Russland."], correctAnswer: 1 },
-  { id: 115, text: "Er ___ in Deutschland.", options: ["wohne", "wohnst", "wohnt", "wohnet"], correctAnswer: 2 },
-  { id: 116, text: "„das Geld“ – ma’nosi?", options: ["ish", "ko‘ylak", "mamlakat", "pul"], correctAnswer: 3 },
-  { id: 117, text: "Wir ___ aus Italien.", options: ["kommen", "kommst", "komme", "kommt"], correctAnswer: 0 },
-  { id: 118, text: "Wie heißt du? – Ich ___ Ali.", options: ["heißt", "heiße", "heiß", "heißen"], correctAnswer: 1 },
-  { id: 119, text: "Sie ___ sehr nett.", options: ["bist", "seid", "ist", "bin"], correctAnswer: 2 },
-  { id: 120, text: "Ich ___ in Taschkent.", options: ["wohnt", "wohnst", "wohnen?", "wohne"], correctAnswer: 3 },
-  { id: 121, text: "Wie heißt Ihr Bruder?", options: ["Er heißt Thomas.", "Er heißt Bruder.", "Thomas heißen.", "Bruder du heißt."], correctAnswer: 0 },
-  { id: 122, text: "Ich ___ aus Japan.", options: ["kommt", "komme", "kommen", "kommst"], correctAnswer: 1 },
-  { id: 123, text: "Haben Sie einen Stift?", options: ["Ja, ich bin Stift.", "Ich habe Stift du.", "Ja, ich habe einen Stift.", "Ja, Stift habe."], correctAnswer: 2 },
-  { id: 124, text: "Wo wohnt deine Familie?", options: ["Sie wohnt Familie.", "Familie wohnen.", "Familie wohne dort.", "Sie wohnt in Samarkand."], correctAnswer: 3 },
-  { id: 125, text: "„der Sohn“ – tarjima qiling", options: ["o‘g‘il", "qiz", "ota", "kitob"], correctAnswer: 0 },
-  { id: 126, text: "Wir ___ eine kleine Wohnung.", options: ["habt", "haben", "hast", "hat"], correctAnswer: 1 },
-  { id: 127, text: "Er ___ sehr gut Englisch.", options: ["sprechen", "spreche", "spricht", "sprechest"], correctAnswer: 2 },
-  { id: 128, text: "Wie alt ist deine Mutter?", options: ["Sie Mutter 40.", "Mutter ist alt.", "40 alt sie.", "Sie ist 40 Jahre alt."], correctAnswer: 3 },
-  { id: 129, text: "Ich ___ keinen Bruder.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 130, text: "„die Tochter“ – bu nima?", options: ["farzand", "qiz", "opa", "bola"], correctAnswer: 1 },
-  { id: 131, text: "Woher kommt Ihr Freund?", options: ["Freund kommt bin.", "Er kommt aus der Schweiz.", "Er Freund Schweiz.", "Schweiz er kommt."], correctAnswer: 2 },
-  { id: 132, text: "Wir ___ heute Unterricht.", options: ["habt", "hat", "hast", "haben"], correctAnswer: 3 },
-  { id: 133, text: "Sie ___ meine Kollegin.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 134, text: "Wie heißt das Kind?", options: ["Kind ist Leon.", "Es heißt Leon.", "Kind heißen Leon.", "Leon heißt bin."], correctAnswer: 1 },
-  { id: 135, text: "„das Heft“ – tarjimasi qaysi?", options: ["qalam", "maktab", "daftar", "shahar"], correctAnswer: 2 },
-  { id: 136, text: "Ich ___ sehr müde.", options: ["bist", "seid", "ist", "bin"], correctAnswer: 3 },
-  { id: 137, text: "Er ___ Arzt von Beruf.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 138, text: "Wo arbeitet dein Vater?", options: ["Er Büro arbeitet.", "Er arbeitet im Büro.", "Büro Arbeit er.", "Vater arbeitet bin."], correctAnswer: 1 },
-  { id: 139, text: "Wir ___ keine Geschwister.", options: ["habt", "hat", "haben", "hast"], correctAnswer: 2 },
-  { id: 140, text: "„der Tisch“ –", options: ["kitob", "ko‘cha", "sham", "stol"], correctAnswer: 3 },
-  { id: 141, text: "Ich ___ in einem kleinen Dorf.", options: ["wohne", "wohnt", "wohnst", "wohnet"], correctAnswer: 0 },
-  { id: 142, text: "Haben Sie einen Termin?", options: ["Ich bin Termin.", "Ja, ich habe einen Termin.", "Ich Termin habe bin.", "Ja, Termin haben du."], correctAnswer: 1 },
-  { id: 143, text: "Wie spät ist es?", options: ["Elf ist Uhr.", "Uhr ist elf ich.", "Es ist elf Uhr.", "Es Uhr elf."], correctAnswer: 2 },
-  { id: 144, text: "Sie ___ aus Österreich.", options: ["komme", "kommst", "kommen", "kommt"], correctAnswer: 3 },
-  { id: 145, text: "„die Uhr“ – bu nima?", options: ["soat", "ko‘z", "kitob", "maktab"], correctAnswer: 0 },
-  { id: 146, text: "Wir ___ Deutsch und Russisch.", options: ["spricht", "sprechen", "sprechest", "spreche"], correctAnswer: 1 },
-  { id: 147, text: "Er ___ kein Telefon.", options: ["haben", "hast", "hat", "habt"], correctAnswer: 2 },
-  { id: 148, text: "Wie heißen Sie?", options: ["Heißen Sie Karim.", "Ich bin Karim heißt.", "Karim ich heiße.", "Ich heiße Karim."], correctAnswer: 3 },
-  { id: 149, text: "Woher ___ sie?", options: ["kommt", "kommen", "kommst", "komme"], correctAnswer: 0 },
-  { id: 150, text: "Ich ___ zwei Schwestern.", options: ["hat", "habe", "haben?", "habt"], correctAnswer: 1 },
-  { id: 151, text: "Wie alt bist du?", options: ["Ich alt 18.", "Bin Jahre 18.", "Ich bin 18 Jahre alt.", "18 bin ich."], correctAnswer: 2 },
-  { id: 152, text: "Er ___ aus Kasachstan.", options: ["komme", "kommst", "kommen", "kommt"], correctAnswer: 3 },
-  { id: 153, text: "Haben Sie Geschwister?", options: ["Ja, ich habe zwei Geschwister.", "Ja, Geschwister bin.", "Ich Geschwister habe du.", "Zwei habe."], correctAnswer: 0 },
-  { id: 154, text: "Wo arbeitet er?", options: ["Er Firma arbeitet.", "Er arbeitet in einer Firma.", "Firma er arbeiten.", "Er arbeitet bin."], correctAnswer: 1 },
-  { id: 155, text: "„das Buch“ – tarjimasi?", options: ["shahar", "daraxt", "kitob", "stol"], correctAnswer: 2 },
-  { id: 156, text: "Wir ___ aus Berlin.", options: ["kommt", "komme", "kommst", "kommen"], correctAnswer: 3 },
-  { id: 157, text: "Sie ___ meine Lehrerin.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 158, text: "Wie heißt dein Vater?", options: ["Vater heißt bin.", "Er heißt Karim.", "Er heißen Karim.", "Karim er."], correctAnswer: 1 },
-  { id: 159, text: "Ich ___ keine Zeit.", options: ["hat", "habt", "habe", "haben?"], correctAnswer: 2 },
-  { id: 160, text: "„die Schule“ – nimani bildiradi?", options: ["sham", "pul", "bino", "maktab"], correctAnswer: 3 },
-  { id: 161, text: "Wo wohnt deine Schwester?", options: ["Sie wohnt in Bonn.", "Sie wohnt Schwester.", "Schwester wohnen.", "Sie wohnen Bonn."], correctAnswer: 0 },
-  { id: 162, text: "Er ___ keinen Bruder.", options: ["haben", "hat", "habt", "hast"], correctAnswer: 1 },
-  { id: 163, text: "Wie geht es Ihnen?", options: ["Sehr geht danke.", "Danke gut ich.", "Sehr gut, danke.", "Gut bin danke."], correctAnswer: 2 },
-  { id: 164, text: "„der Hund“ – bu nima?", options: ["sigir", "qush", "maktab", "it"], correctAnswer: 3 },
-  { id: 165, text: "Wir ___ heute frei.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 166, text: "Ich ___ in Usbekistan.", options: ["wohnt", "wohne", "wohnen?", "wohnst"], correctAnswer: 1 },
-  { id: 167, text: "Haben Sie einen Pass?", options: ["Ja, Pass bin.", "Ja, habe du Pass.", "Ja, ich habe einen Pass.", "Ich Pass habe."], correctAnswer: 2 },
-  { id: 168, text: "Woher kommt dein Freund?", options: ["Freund kommt.", "Er kommt Türkei bin.", "Türkei er.", "Er kommt aus der Türkei."], correctAnswer: 3 },
-  { id: 169, text: "Sie ___ gut Deutsch.", options: ["spricht", "sprechen", "spreche", "sprechest"], correctAnswer: 0 },
-  { id: 170, text: "„die Tasche“ – tarjimasi?", options: ["shahar", "sumka", "yo‘l", "ko‘ylak"], correctAnswer: 1 },
-  { id: 171, text: "Wir ___ eine Tochter.", options: ["habt", "hat", "haben", "hast"], correctAnswer: 2 },
-  { id: 172, text: "Wie spät ist es?", options: ["Fünf Uhr bin.", "Uhr fünf.", "Es Uhr fünf.", "Es ist fünf Uhr."], correctAnswer: 3 },
-  { id: 173, text: "Ich ___ ein Auto.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 174, text: "Er ___ in einem Hotel.", options: ["arbeite", "arbeitet", "arbeitetet", "arbeiten"], correctAnswer: 1 },
-  { id: 175, text: "„die Familie“ – ma’nosi?", options: ["daraxt", "sumka", "oila", "talaba"], correctAnswer: 2 },
-  { id: 176, text: "Wo wohnt du?", options: ["Wohne ich Nukus.", "Ich wohnt Nukus.", "Du wohnst ich.", "Ich wohne in Nukus."], correctAnswer: 3 },
-  { id: 177, text: "Wir ___ im Park.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 178, text: "Ich ___ zwei Freunde.", options: ["hat", "habe", "haben?", "habt"], correctAnswer: 1 },
-  { id: 179, text: "Sie ___ sehr freundlich.", options: ["bist", "seid", "ist", "bin"], correctAnswer: 2 },
-  { id: 180, text: "„das Kind“ – tarjimasi?", options: ["ota", "ona", "mehmon", "bola"], correctAnswer: 3 },
-  { id: 181, text: "Wie heißt deine Mutter?", options: ["Sie heißt Sabina.", "Mutter heißt bin.", "Sabina Mutter.", "Sie heißen Sabina."], correctAnswer: 0 },
-  { id: 182, text: "Er ___ aus Usbekistan.", options: ["komme", "kommt", "kommst", "kommen"], correctAnswer: 1 },
-  { id: 183, text: "Wir ___ heute keine Schule.", options: ["habt", "hat", "haben", "hast"], correctAnswer: 2 },
-  { id: 184, text: "Wo wohnt dein Lehrer?", options: ["Lehrer wohnt.", "Berlin er wohnen.", "Er wohnen Berlin.", "Er wohnt in Berlin."], correctAnswer: 3 },
-  { id: 185, text: "„der Bruder“ – ma’nosi?", options: ["aka / uka", "ota", "o‘g‘il", "mehmon"], correctAnswer: 0 },
-  { id: 186, text: "Ich ___ nicht müde.", options: ["bist", "bin", "ist", "seid"], correctAnswer: 1 },
-  { id: 187, text: "Sie ___ im Büro.", options: ["arbeiten", "arbeite", "arbeitet", "arbeitetet"], correctAnswer: 2 },
-  { id: 188, text: "Wie alt ist dein Bruder?", options: ["Bruder alt.", "15 Bruder.", "Alt ist Bruder.", "Er ist 15 Jahre alt."], correctAnswer: 3 },
-  { id: 189, text: "„das Haus“ – tarjimasi qaysi?", options: ["uy", "ko‘cha", "maktab", "qalam"], correctAnswer: 0 },
-  { id: 190, text: "Er ___ eine Tochter.", options: ["hast", "hat", "haben", "habt"], correctAnswer: 1 },
-  { id: 191, text: "Woher kommen Sie?", options: ["Ich kommen.", "Komme bin.", "Ich komme aus Tadschikistan.", "Ich komme Stadt."], correctAnswer: 2 },
-  { id: 192, text: "Wir ___ Deutsch.", options: ["spricht", "spreche", "sprechest", "sprechen"], correctAnswer: 3 },
-  { id: 193, text: "Wie geht’s dir?", options: ["Gut, danke.", "Geht dir.", "Danke gut.", "Ich gut danke."], correctAnswer: 0 },
-  { id: 194, text: "„die Küche“ – bu nima?", options: ["bog‘", "oshxona", "mehmonxona", "xonadon"], correctAnswer: 1 },
-  { id: 195, text: "Ich ___ zwei Brüder.", options: ["hat", "habt", "habe", "haben?"], correctAnswer: 2 },
-  { id: 196, text: "Sie ___ sehr müde.", options: ["bist", "seid", "bin", "ist"], correctAnswer: 3 },
-  { id: 197, text: "Wo arbeitest du?", options: ["Ich arbeite in einer Schule.", "Ich arbeiten Schule.", "Arbeit bin Schule.", "Ich Schule arbeite."], correctAnswer: 0 },
-  { id: 198, text: "Er ___ kein Geld.", options: ["haben", "hat", "habt", "hast"], correctAnswer: 1 },
-  { id: 199, text: "„der Lehrer“ – tarjimasi?", options: ["mijoz", "shifokor", "o‘qituvchi", "bola"], correctAnswer: 2 },
-  { id: 200, text: "Wir ___ zusammen.", options: ["seid", "bin", "bist", "sind"], correctAnswer: 3 },
-  { id: 201, text: "Wie spät ist es?", options: ["Es ist drei Uhr.", "Drei Uhr ist.", "Ist Uhr drei.", "Es Uhr drei."], correctAnswer: 0 },
-  { id: 202, text: "Ich ___ in der Stadt.", options: ["wohne", "wohnst", "wohnt", "wohnet"], correctAnswer: 0 },
-  { id: 203, text: "Haben Sie eine Frage?", options: ["Ja, ich habe eine Frage.", "Frage habe.", "Ich bin Frage.", "Ja, Frage ist."], correctAnswer: 0 },
-  { id: 204, text: "Er ___ gut Englisch.", options: ["spricht", "spreche", "sprechen", "sprechest"], correctAnswer: 0 },
-  { id: 205, text: "„die Stadt“ – ma’nosi?", options: ["shahar", "mamlakat", "ko‘ylak", "telefon"], correctAnswer: 0 },
-  { id: 206, text: "Wo wohnt ihr?", options: ["Wir wohnen in Köln.", "Ihr wohnt.", "Wir wohne.", "Köln ihr wohnen."], correctAnswer: 0 },
-  { id: 207, text: "Ich ___ ein Buch.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 208, text: "Wie heißt du?", options: ["Ich heiße Timur.", "Du heißt Timur ich.", "Timur heiße bin.", "Ich Timur heiße."], correctAnswer: 0 },
-  { id: 209, text: "Sie ___ aus Spanien.", options: ["kommt", "kommen", "kommst", "komme"], correctAnswer: 0 },
-  { id: 210, text: "„die Mutter“ – tarjimasi qaysi?", options: ["ona", "opa", "singil", "bobo"], correctAnswer: 0 },
-  { id: 211, text: "Wie heißt dein Freund?", options: ["Er heißt Jonas.", "Freund heißt bin.", "Jonas heiße.", "Er heißen Jonas."], correctAnswer: 0 },
-  { id: 212, text: "Wir ___ heute keine Zeit.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 213, text: "Wo wohnt deine Familie?", options: ["Sie wohnt in Taschkent.", "Familie wohnen.", "Taschkent wohnt.", "Sie Familie wohnt."], correctAnswer: 0 },
-  { id: 214, text: "Ich ___ müde.", options: ["bin", "bist", "ist", "seid"], correctAnswer: 0 },
-  { id: 215, text: "„das Auto“ – ma’nosi qaysi?", options: ["mashina", "velosiped", "uy", "telefon"], correctAnswer: 0 },
-  { id: 216, text: "Er ___ gut Deutsch.", options: ["spricht", "sprechen", "spreche", "sprechest"], correctAnswer: 0 },
-  { id: 217, text: "Wie alt bist du?", options: ["Ich bin 17.", "17 bin.", "Alt 17.", "Ich alt."], correctAnswer: 0 },
-  { id: 218, text: "Wir ___ aus Usbekistan.", options: ["kommen", "kommt", "kommst", "komme"], correctAnswer: 0 },
-  { id: 219, text: "Sie ___ meine Freundin.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 220, text: "„die Arbeit“ – tarjimasi qaysi?", options: ["ish", "daraxt", "maktab", "qalam"], correctAnswer: 0 },
-  { id: 221, text: "Ich ___ kein Handy.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 222, text: "Woher kommt ihr?", options: ["Wir kommen aus Italien.", "Wir komme.", "Ihr kommt bin.", "Italien wir kommen."], correctAnswer: 0 },
-  { id: 223, text: "Er ___ in einem Büro.", options: ["arbeitet", "arbeite", "arbeiten", "arbeitetet"], correctAnswer: 0 },
-  { id: 224, text: "Wie heißt Ihre Tochter?", options: ["Sie heißt Laura.", "Tochter heißt bin.", "Laura heißt sie bin.", "Sie heißen Laura."], correctAnswer: 0 },
-  { id: 225, text: "„der Tisch“ – bu nima?", options: ["stol", "kitob", "ko‘cha", "sham"], correctAnswer: 0 },
-  { id: 226, text: "Wir ___ zwei Kinder.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 227, text: "Ich ___ aus Russland.", options: ["komme", "kommt", "kommst", "kommen"], correctAnswer: 0 },
-  { id: 228, text: "Wo wohnt dein Bruder?", options: ["Er wohnt in Berlin.", "Bruder wohnen.", "Berlin er.", "Er Berlin wohnt bin."], correctAnswer: 0 },
-  { id: 229, text: "Sie ___ sehr nett.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 230, text: "„die Tasche“ – tarjimasi?", options: ["sumka", "ko‘ylak", "sham", "telefon"], correctAnswer: 0 },
-  { id: 231, text: "Wie spät ist es?", options: ["Es ist acht Uhr.", "Acht bin Uhr.", "Es Uhr acht ich.", "Uhr acht es."], correctAnswer: 0 },
-  { id: 232, text: "Ich ___ in einer Wohnung.", options: ["wohne", "wohnt", "wohnst", "wohnen?"], correctAnswer: 0 },
-  { id: 233, text: "Er ___ keine Schwester.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 234, text: "„das Zimmer“ – ma’nosi?", options: ["xona", "uy", "bog‘", "shahar"], correctAnswer: 0 },
-  { id: 235, text: "Wir ___ zusammen im Auto.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 236, text: "Wie geht es Ihnen?", options: ["Sehr gut, danke.", "Gut danke ich.", "Geht gut.", "Danke gut bin."], correctAnswer: 0 },
-  { id: 237, text: "Haben Sie einen Bruder?", options: ["Ja, ich habe einen Bruder.", "Habe Bruder.", "Ja Bruder bin.", "Bruder ich habe bin."], correctAnswer: 0 },
-  { id: 238, text: "Woher kommt deine Freundin?", options: ["Sie kommt aus Spanien.", "Freundin kommt.", "Spanien sie.", "Sie kommt bin Spanien."], correctAnswer: 0 },
-  { id: 239, text: "Ich ___ eine Frage.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 240, text: "„die Mutter“ – tarjimasi?", options: ["ona", "opa", "singil", "do‘st"], correctAnswer: 0 },
-  { id: 241, text: "Wie heißt deine Schwester?", options: ["Sie heißt Lena.", "Schwester heißt bin.", "Lena.", "Lena bin."], correctAnswer: 0 },
-  { id: 242, text: "Wir ___ aus Deutschland.", options: ["kommen", "kommst", "kommt", "komme"], correctAnswer: 0 },
-  { id: 243, text: "Er ___ keinen Hund.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 244, text: "Wo wohnt sie?", options: ["Sie wohnt in Wien.", "Sie wohnen Wien.", "Wohnen bin.", "Wien sie."], correctAnswer: 0 },
-  { id: 245, text: "„das Brot“ – ma’nosi?", options: ["non", "go‘sht", "idish", "sham"], correctAnswer: 0 },
-  { id: 246, text: "Ich ___ ein Auto.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 247, text: "Wie alt ist dein Vater?", options: ["Er ist 50 Jahre alt.", "50 bin.", "Alt er.", "Er Jahre 50."], correctAnswer: 0 },
-  { id: 248, text: "Sie ___ heute nicht im Büro.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 249, text: "Wir ___ zwei Schwestern.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 250, text: "„die Lampe“ – tarjimasi qaysi?", options: ["chiroq", "devor", "uy", "ko‘cha"], correctAnswer: 0 },
-  { id: 251, text: "Woher kommen deine Eltern?", options: ["Sie kommen aus Österreich.", "Eltern kommen.", "Eltern bin.", "Österreich sie."], correctAnswer: 0 },
-  { id: 252, text: "Ich ___ müde.", options: ["bin", "bist", "seid", "ist"], correctAnswer: 0 },
-  { id: 253, text: "Er ___ gut Englisch.", options: ["spricht", "sprechen", "spreche", "sprechest"], correctAnswer: 0 },
-  { id: 254, text: "Wie geht es ihm?", options: ["Es geht ihm gut.", "Gut geht ihm.", "Ihm geht.", "Gut bin."], correctAnswer: 0 },
-  { id: 255, text: "„die Frage“ – nima?", options: ["savol", "kitob", "telefon", "ko‘cha"], correctAnswer: 0 },
-  { id: 256, text: "Wir ___ im Kurs.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 257, text: "Ich ___ eine Tasche.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 258, text: "Wo wohnst du?", options: ["Ich wohne in Urganch.", "Ich wohnt.", "Urganch wohne.", "Du wohnen."], correctAnswer: 0 },
-  { id: 259, text: "Sie ___ sehr freundlich.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 260, text: "„das Wasser“ – tarjimasi?", options: ["suv", "daraxt", "ovqat", "qalam"], correctAnswer: 0 },
-  { id: 261, text: "Er ___ aus Spanien.", options: ["kommt", "komme", "kommst", "kommen"], correctAnswer: 0 },
-  { id: 262, text: "Wie heißt dein Lehrer?", options: ["Er heißt David.", "Lehrer heißt.", "David bin.", "Er heißen David."], correctAnswer: 0 },
-  { id: 263, text: "Wir ___ keine Zeit.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 264, text: "Sie ___ zwei Kinder.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 265, text: "„die Zeitung“ – ma’nosi qaysi?", options: ["gazeta", "daftar", "sumka", "maktab"], correctAnswer: 0 },
-  { id: 266, text: "Ich ___ im Hotel.", options: ["arbeite", "arbeiten", "arbeitet", "arbeitest"], correctAnswer: 0 },
-  { id: 267, text: "Woher kommt deine Mutter?", options: ["Sie kommt aus Polen.", "Mutter kommt.", "Polen bin.", "Sie kommt Mutter."], correctAnswer: 0 },
-  { id: 268, text: "Wir ___ müde.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 269, text: "Er ___ eine Wohnung.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 270, text: "„das Land“ – tarjimasi?", options: ["mamlakat", "shahar", "ko‘l", "tuman"], correctAnswer: 0 },
-  { id: 271, text: "Wie heißt dein Freund?", options: ["Er heißt Paul.", "Freund bin.", "Paul heißt.", "Er heißen Paul."], correctAnswer: 0 },
-  { id: 272, text: "Wir ___ aus Russland.", options: ["kommen", "kommt", "kommst", "komme"], correctAnswer: 0 },
-  { id: 273, text: "Sie ___ keine Schwester.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 274, text: "Wo wohnt dein Onkel?", options: ["Er wohnt in Berlin.", "Onkel wohnen.", "Berlin wohnt bin.", "Er wohnen Berlin."], correctAnswer: 0 },
-  { id: 275, text: "„die Milch“ – ma’nosi?", options: ["sut", "non", "gazeta", "stol"], correctAnswer: 0 },
-  { id: 276, text: "Ich ___ ein Haus.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 277, text: "Wie alt ist sie?", options: ["Sie ist 30 Jahre alt.", "30 bin.", "Alt sie.", "Sie Jahre alt."], correctAnswer: 0 },
-  { id: 278, text: "Er ___ Arzt.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 279, text: "Wir ___ heute Unterricht.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 280, text: "„das Fenster“ – tarjimasi qaysi?", options: ["deraza", "eshik", "maktab", "gazeta"], correctAnswer: 0 },
-  { id: 281, text: "Woher kommen deine Freunde?", options: ["Sie kommen aus der Türkei.", "Freunde kommen.", "Freunde bin.", "Türkei Freunde."], correctAnswer: 0 },
-  { id: 282, text: "Ich ___ nicht hungrig.", options: ["bin", "bist", "ist", "seid"], correctAnswer: 0 },
-  { id: 283, text: "Er ___ viel Deutsch.", options: ["spricht", "sprechen", "spreche", "sprechest"], correctAnswer: 0 },
-  { id: 284, text: "Wie geht es euch?", options: ["Uns geht es gut.", "Uns geht.", "Gut uns.", "Wir bin gut."], correctAnswer: 0 },
-  { id: 285, text: "„die Brille“ – ma’nosi?", options: ["ko‘zoynak", "telefon", "go‘sht", "kitob"], correctAnswer: 0 },
-  { id: 286, text: "Wir ___ im Hotel.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 287, text: "Ich ___ einen Kuli.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 288, text: "Wo arbeitest du?", options: ["Ich arbeite im Krankenhaus.", "Krankenhaus arbeite.", "Ich arbeiten.", "Arbeit ich."], correctAnswer: 0 },
-  { id: 289, text: "Sie ___ sehr müde.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 290, text: "„das Brot“ – nima?", options: ["non", "suv", "idish", "bog‘"], correctAnswer: 0 },
-  { id: 291, text: "Er ___ aus Japan.", options: ["kommt", "komme", "kommst", "kommen"], correctAnswer: 0 },
-  { id: 292, text: "Wie heißt Ihre Mutter?", options: ["Sie heißt Sara.", "Mutter Sara ist.", "Sie Sara.", "Mutter heißen."], correctAnswer: 0 },
-  { id: 293, text: "Wir ___ kein Geld.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 294, text: "Ich ___ zwei Schwestern.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 295, text: "„die Straße“ – tarjimasi qaysi?", options: ["ko‘cha", "maktab", "bog‘", "uy"], correctAnswer: 0 },
-  { id: 296, text: "Wo wohnt deine Cousine?", options: ["Sie wohnt in Köln.", "Cousine wohnen.", "Köln wohnt.", "Sie wohnen."], correctAnswer: 0 },
-  { id: 297, text: "Er ___ kein Handy.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 298, text: "Wie spät ist es?", options: ["Es ist zehn Uhr.", "Uhr zehn.", "Zehn es.", "Es Uhr."], correctAnswer: 0 },
-  { id: 299, text: "Wir ___ zusammen im Auto.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 300, text: "„der Sohn“ – ma’nosi?", options: ["o‘g‘il", "aka", "mijoz", "ustoz"], correctAnswer: 0 },
-  { id: 301, text: "Wie heißt dein Vater?", options: ["Er heißt Mehmet.", "Vater bin.", "Mehmet heißen.", "Er Vater."], correctAnswer: 0 },
-  { id: 302, text: "Wir ___ in Taschkent.", options: ["wohnen", "wohnt", "wohnst", "wohne"], correctAnswer: 0 },
-  { id: 303, text: "Sie ___ ein Auto.", options: ["hat", "haben", "habt", "hast"], correctAnswer: 0 },
-  { id: 304, text: "Wo arbeitet deine Mutter?", options: ["Sie arbeitet im Krankenhaus.", "Mutter arbeiten.", "Krankenhaus sie.", "Sie arbeitet bin."], correctAnswer: 0 },
-  { id: 305, text: "„der Stuhl“ – ma’nosi?", options: ["stul", "kitob", "qalam", "ko‘cha"], correctAnswer: 0 },
-  { id: 306, text: "Ich ___ Kaffee.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 307, text: "Wie alt ist deine Schwester?", options: ["Sie ist 12 Jahre alt.", "12 bin.", "Alt Schwester.", "Schwester Jahre."], correctAnswer: 0 },
-  { id: 308, text: "Er ___ Lehrer.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 309, text: "Wir ___ morgen frei.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 310, text: "„die Wand“ – tarjimasi qaysi?", options: ["devor", "pol", "sham", "idish"], correctAnswer: 0 },
-  { id: 311, text: "Woher kommt dein Onkel?", options: ["Er kommt aus Iran.", "Onkel kommen.", "Iran bin.", "Er kommt bin."], correctAnswer: 0 },
-  { id: 312, text: "Ich ___ kein Geld.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 313, text: "Sie ___ gut Deutsch.", options: ["spricht", "sprechen", "spreche", "sprechest"], correctAnswer: 0 },
-  { id: 314, text: "Wie geht es deiner Mutter?", options: ["Es geht ihr gut.", "Gut ihr.", "Ihr geht.", "Gut bin."], correctAnswer: 0 },
-  { id: 315, text: "„das Fenster“ – bu nima?", options: ["deraza", "eshik", "uy", "maktab"], correctAnswer: 0 },
-  { id: 316, text: "Wir ___ im Park.", options: ["sind", "seid", "bist", "bin"], correctAnswer: 0 },
-  { id: 317, text: "Ich ___ zwei Brüder.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 318, text: "Wo wohnst du?", options: ["Ich wohne in Samarkand.", "Wohnen bin.", "Ich wohnt.", "Samarkand ich."], correctAnswer: 0 },
-  { id: 319, text: "Sie ___ sehr freundlich.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 320, text: "„die Lampe“ – tarjimasi?", options: ["chiroq", "stol", "daraxt", "ko‘cha"], correctAnswer: 0 },
-  { id: 321, text: "Er ___ aus Frankreich.", options: ["kommt", "komme", "kommst", "kommen"], correctAnswer: 0 },
-  { id: 322, text: "Wie heißt dein Freund?", options: ["Er heißt Yusuf.", "Freund heißen.", "Yusuf bin.", "Er bin Yusuf."], correctAnswer: 0 },
-  { id: 323, text: "Wir ___ heute Unterricht.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 324, text: "Ich ___ keinen Bruder.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 325, text: "„das Wasser“ – ma’nosi qaysi?", options: ["suv", "gazeta", "sham", "bog‘"], correctAnswer: 0 },
-  { id: 326, text: "Wo wohnt deine Oma?", options: ["Sie wohnt in Andijon.", "Oma wohnen.", "Andijon sie.", "Oma bin."], correctAnswer: 0 },
-  { id: 327, text: "Er ___ kein Handy.", options: ["hat", "haben", "habt", "hast"], correctAnswer: 0 },
-  { id: 328, text: "Wie spät ist es?", options: ["Es ist sechs Uhr.", "Sechs Uhr.", "Uhr sechs.", "Es Uhr."], correctAnswer: 0 },
-  { id: 329, text: "Wir ___ zusammen.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 330, text: "„die Küche“ – tarjimasi?", options: ["oshxona", "uyning derazasi", "maktab", "bog‘"], correctAnswer: 0 },
-  { id: 331, text: "Wie heißt dein Bruder?", options: ["Er heißt Amir.", "Bruder bin.", "Amir heißt.", "Er heißen Amir."], correctAnswer: 0 },
-  { id: 332, text: "Wir ___ in einer Wohnung.", options: ["wohnen", "wohnt", "wohnst", "wohnet"], correctAnswer: 0 },
-  { id: 333, text: "Sie ___ kein Auto.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 334, text: "Wo arbeitet dein Vater?", options: ["Er arbeitet in einer Firma.", "Vater arbeiten.", "Firma er.", "Er arbeiten."], correctAnswer: 0 },
-  { id: 335, text: "„der Computer“ – ma’nosi?", options: ["kompyuter", "olma", "kitob", "sham"], correctAnswer: 0 },
-  { id: 336, text: "Ich ___ Tee.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 337, text: "Wie alt ist deine Oma?", options: ["Sie ist 70 Jahre alt.", "70 Oma.", "Alt sie.", "Sie alt."], correctAnswer: 0 },
-  { id: 338, text: "Er ___ Ingenieur.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 339, text: "Wir ___ heute keine Zeit.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 340, text: "„das Bett“ – tarjimasi?", options: ["karavot", "stol", "bino", "gazeta"], correctAnswer: 0 },
-  { id: 341, text: "Woher kommt dein Lehrer?", options: ["Er kommt aus Italien.", "Lehrer kommen.", "Italien bin.", "Er bin Italien."], correctAnswer: 0 },
-  { id: 342, text: "Ich ___ kein Buch.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 343, text: "Sie ___ sehr gut Deutsch.", options: ["spricht", "sprechen", "spreche", "sprechest"], correctAnswer: 0 },
-  { id: 344, text: "Wie geht es deinem Bruder?", options: ["Es geht ihm gut.", "Ihm geht.", "Gut er.", "Gut bin."], correctAnswer: 0 },
-  { id: 345, text: "„die Tür“ – nima?", options: ["eshik", "deraza", "xonadon", "o‘rmon"], correctAnswer: 0 },
-  { id: 346, text: "Wir ___ im Garten.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 347, text: "Ich ___ zwei Cousins.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 348, text: "Wo wohnst du jetzt?", options: ["Ich wohne in Qarshi.", "Ich wohnt.", "Qarshi wohne.", "Wohnen bin."], correctAnswer: 0 },
-  { id: 349, text: "Sie ___ aus Korea.", options: ["kommt", "kommen", "kommst", "komme"], correctAnswer: 0 },
-  { id: 350, text: "„die Zeitung“ – ma’nosi?", options: ["gazeta", "sumka", "do‘kon", "ko‘ylak"], correctAnswer: 0 },
-  { id: 351, text: "Er ___ kein Geld.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 352, text: "Wie heißt das Kind?", options: ["Es heißt Noah.", "Kind heißt.", "Noah bin.", "Es bin Noah."], correctAnswer: 0 },
-  { id: 353, text: "Wir ___ viele Freunde.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 354, text: "Ich ___ keinen Stift.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 355, text: "„der Kuli“ – bu nima?", options: ["ruchka", "stol", "xarita", "uy"], correctAnswer: 0 },
-  { id: 356, text: "Wo arbeitet deine Schwester?", options: ["Sie arbeitet im Büro.", "Schwester arbeiten.", "Büro bin.", "Er arbeitet."], correctAnswer: 0 },
-  { id: 357, text: "Er ___ in Taschkent.", options: ["wohnt", "wohnen", "wohnst", "wohnet"], correctAnswer: 0 },
-  { id: 358, text: "Wie spät ist es?", options: ["Es ist vier Uhr.", "Vier Uhr.", "Uhr vier.", "Es Uhr."], correctAnswer: 0 },
-  { id: 359, text: "Wir ___ aus China.", options: ["kommen", "kommt", "komme", "kommst"], correctAnswer: 0 },
-  { id: 360, text: "„die Suppe“ – ma’nosi?", options: ["sho‘rva", "choy", "piyola", "non"], correctAnswer: 0 },
-  { id: 361, text: "Wie heißt deine Lehrerin?", options: ["Sie heißt Julia.", "Lehrerin bin.", "Julia heißen.", "Sie Julia."], correctAnswer: 0 },
-  { id: 362, text: "Wir ___ aus der Türkei.", options: ["kommen", "kommst", "komme", "kommt"], correctAnswer: 0 },
-  { id: 363, text: "Er ___ keinen Computer.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 364, text: "Wo wohnt deine Tante?", options: ["Sie wohnt in Frankfurt.", "Tante arbeiten.", "Frankfurt bin.", "Wohnt Tante."], correctAnswer: 0 },
-  { id: 365, text: "„die Banane“ – ma’nosi?", options: ["banan", "olma", "gazeta", "idish"], correctAnswer: 0 },
-  { id: 366, text: "Ich ___ Wasser.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 367, text: "Wie alt ist dein Opa?", options: ["Er ist 65 Jahre", "65 bin.", "Alt er.", "Er Jahre."], correctAnswer: 0 },
-  { id: 368, text: "Sie ___ Ärztin.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 369, text: "Wir ___ morgen Schule.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 370, text: "„der Schrank“ – tarjimasi?", options: ["shkaf", "daraxt", "devor", "ko‘prik"], correctAnswer: 0 },
-  { id: 371, text: "Woher kommt deine Schwester?", options: ["Sie kommt aus Spanien.", "Schwester kommen.", "Spanien bin.", "Sie kommt bin."], correctAnswer: 0 },
-  { id: 372, text: "Ich ___ ein Handy.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 373, text: "Er ___ sehr schnell Deutsch.", options: ["lernt", "lerne", "lernen", "lernst"], correctAnswer: 0 },
-  { id: 374, text: "Wie geht es deinem Vater?", options: ["Es geht ihm gut.", "Ihm geht.", "Gut er.", "Gut bin."], correctAnswer: 0 },
-  { id: 375, text: "„die Decke“ – nima?", options: ["ship", "deraza", "bog‘", "maktab"], correctAnswer: 0 },
-  { id: 376, text: "Wir ___ im Wohnzimmer.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 377, text: "Ich ___ eine Lampe.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 378, text: "Wo wohnst du?", options: ["Ich wohne in Buxoro.", "Wohne bin.", "Buxoro wohne.", "Du wohnst ich."], correctAnswer: 0 },
-  { id: 379, text: "Sie ___ aus Italien.", options: ["kommt", "kommen", "kommst", "komme"], correctAnswer: 0 },
-  { id: 380, text: "„das Fleisch“ – ma’nosi?", options: ["go‘sht", "non", "shakar", "sham"], correctAnswer: 0 },
-  { id: 381, text: "Er ___ kein Auto.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 382, text: "Wie heißt der Junge?", options: ["Er heißt Max.", "Junge bin.", "Max heißen.", "Er Max."], correctAnswer: 0 },
-  { id: 383, text: "Wir ___ viele Aufgaben.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 384, text: "Ich ___ keinen Kuli.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 385, text: "„die Milch“ – tarjimasi?", options: ["sut", "choy", "gazeta", "gap"], correctAnswer: 0 },
-  { id: 386, text: "Wo arbeitet dein Bruder?", options: ["Er arbeitet im Hotel.", "Bruder arbeiten.", "Hotel er.", "Er bin Hotel."], correctAnswer: 0 },
-  { id: 387, text: "Er ___ in Moskau.", options: ["wohnt", "wohnen", "wohnst", "wohnet"], correctAnswer: 0 },
-  { id: 388, text: "Wie spät ist es?", options: ["Es ist zwei Uhr.", "Zwei Uhr.", "Uhr zwei.", "Es Uhr."], correctAnswer: 0 },
-  { id: 389, text: "Wir ___ zusammen.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 390, text: "„die Katze“ – ma’nosi?", options: ["mushuk", "it", "quyon", "sigir"], correctAnswer: 0 },
-  { id: 391, text: "Wie heißt dein Sohn?", options: ["Er heißt Milan.", "Sohn heißen.", "Milan bin.", "Er Sohn."], correctAnswer: 0 },
-  { id: 392, text: "Wir ___ im Hotel.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 393, text: "Er ___ keine Katze.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 394, text: "Wo arbeitet deine Schwester?", options: ["Sie arbeitet im Restaurant.", "Schwester arbeiten.", "Restaurant bin.", "Sie Restaurant."], correctAnswer: 0 },
-  { id: 395, text: "„die Orange“ – ma’nosi?", options: ["apelsin", "puter", "ko‘ylak", "o‘yinchoq"], correctAnswer: 0 },
-  { id: 396, text: "Ich ___ ein Glas Wasser.", options: ["möchte", "haben", "hat", "habt"], correctAnswer: 0 },
-  { id: 397, text: "Wie alt ist dein Freund?", options: ["Er ist 20 Jahre alt.", "20 bin.", "Freund alt.", "Er Jahre."], correctAnswer: 0 },
-  { id: 398, text: "Sie ___ Lehrerin.", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 399, text: "Wir ___ morgen Prüfung.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 400, text: "„die Kamera“ – tarjimasi?", options: ["kamera", "gazeta", "non", "maktab"], correctAnswer: 0 },
-  { id: 401, text: "Woher kommt dein Cousin?", options: ["Er kommt aus Japan.", "Cousin kommen.", "Japan bin.", "Er kommt bin."], correctAnswer: 0 },
-  { id: 402, text: "Ich ___ keine Zeit.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 403, text: "Er ___ sehr gut Englisch.", options: ["spricht", "sprechen", "spreche", "sprechest"], correctAnswer: 0 },
-  { id: 404, text: "Wie geht es deiner Schwester?", options: ["Es geht ihr gut.", "Schwester geht.", "Gut sie.", "Gut bin."], correctAnswer: 0 },
-  { id: 405, text: "„die Blume“ – ma’nosi?", options: ["gul", "deraza", "jurnal", "telefon"], correctAnswer: 0 },
-  { id: 406, text: "Wir ___ im Garten.", options: ["sind", "seid", "bin", "bist"], correctAnswer: 0 },
-  { id: 407, text: "Ich ___ eine Frage.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 408, text: "Wo wohnst du?", options: ["Ich wohne in Jizzax.", "Ich wohnt.", "Wohnen bin.", "Jizzax wohne."], correctAnswer: 0 },
-  { id: 409, text: "Sie ___ aus China.", options: ["kommt", "kommen", "kommst", "komme"], correctAnswer: 0 },
-  { id: 410, text: "„der Apfel“ – tarjimasi?", options: ["olma", "non", "sham", "piyola"], correctAnswer: 0 },
-  { id: 411, text: "Er ___ kein Brot.", options: ["hat", "haben", "hast", "habt"], correctAnswer: 0 },
-  { id: 412, text: "Wie heißt der Mann?", options: ["Er heißt Peter.", "Mann bin.", "Peter heißen.", "Er Peter."], correctAnswer: 0 },
-  { id: 413, text: "Wir ___ zwei Lehrer.", options: ["haben", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 414, text: "Ich ___ keinen Computer.", options: ["habe", "hat", "habt", "haben?"], correctAnswer: 0 },
-  { id: 415, text: "„die Suppe“ – bu nima?", options: ["sho‘rva", "salat", "gazeta", "pul"], correctAnswer: 0 },
-  { id: 416, text: "Wo arbeitet deine Tante?", options: ["Sie arbeitet in einer Schule.", "Tante arbeiten.", "Schule bin.", "Sie Schule."], correctAnswer: 0 },
-  { id: 417, text: "Er ___ in Dubai.", options: ["wohnt", "wohnen", "wohnst", "wohnet"], correctAnswer: 0 },
-  { id: 418, text: "Wie spät ist es?", options: ["Es ist neun Uhr.", "Neun Uhr.", "Uhr neun.", "Es Uhr."], correctAnswer: 0 },
-  { id: 419, text: "Wir ___ zusammen spielen.", options: ["wollen", "seid", "bin", "hast"], correctAnswer: 0 },
-  { id: 420, text: "„der Tisch“ – ma’nosi?", options: ["stol", "kitob", "deraza", "o‘quvchi"], correctAnswer: 0 },
-  { id: 421, text: "Wie sagt man „hello“ auf Deutsch?", options: ["Hallo", "Tschüs", "Danke", "Bitte"], correctAnswer: 0 },
-  { id: 422, text: "Wie sagt man „goodbye“?", options: ["Tschüs", "Hallo", "Guten Morgen", "Bitte"], correctAnswer: 0 },
-  { id: 423, text: "Welche Begrüßung passt?", options: ["Guten Tag", "Gute Nacht", "Tschüs", "Danke"], correctAnswer: 0 },
-  { id: 424, text: "Was sagt man am Abend?", options: ["Guten Abend", "Guten Morgen", "Hallo", "Willkommen"], correctAnswer: 0 },
-  { id: 425, text: "Was sagt man vor dem Schlafen?", options: ["Gute Nacht", "Guten Tag", "Hallo", "Tschüs"], correctAnswer: 0 },
-  { id: 426, text: "Wie stellst du dich vor?", options: ["Ich heiße Anna", "Du heißt Anna", "Er heißt Anna", "Mein Name du Anna"], correctAnswer: 0 },
-  { id: 427, text: "Welche Frage passt? „Ich heiße Mark.“", options: ["Wie heißt du?", "Wo wohnst du?", "Wie alt bist du?", "Was machst du?"], correctAnswer: 0 },
-  { id: 428, text: "Wie fragst du höflich?", options: ["Wie heißen Sie?", "Wie heißt du?", "Wer bist du?", "Wo bist du?"], correctAnswer: 0 },
-  { id: 429, text: "Welche Antwort passt? „Wer ist das?“", options: ["Das ist Maria", "Ich heiße Maria", "Ich komme aus Maria", "Sie heißt du"], correctAnswer: 0 },
-  { id: 430, text: "Was passt? „Mein Name ___ Laura.“", options: ["ist", "bin", "bist", "seid"], correctAnswer: 0 },
-  { id: 431, text: "Wie fragst du nach dem Wohnort?", options: ["Wo wohnst du?", "Wie heißt du?", "Wer bist du?", "Wie alt bist du?"], correctAnswer: 0 },
-  { id: 432, text: "Welche Antwort passt? „Wo wohnst du?“", options: ["Ich wohne in Berlin", "Ich heiße Berlin", "Ich komme Berlin", "Ich bin Berlin alt"], correctAnswer: 0 },
-  { id: 433, text: "Wie fragst du höflich nach dem Wohnort?", options: ["Wo wohnen Sie?", "Wo wohnst du?", "Wer wohnen Sie?", "Wie wohnen du?"], correctAnswer: 0 },
-  { id: 434, text: "Wie fragst du nach der Herkunft?", options: ["Woher kommst du?", "Wie heißt du?", "Wo wohnst du?", "Wer bist du?"], correctAnswer: 0 },
-  { id: 435, text: "Welche Antwort passt? „Woher kommst du?“", options: ["Ich komme aus Spanien", "Ich bin Spanien alt", "Ich spreche Spanien", "Ich wohne Spanien"], correctAnswer: 0 },
-  { id: 436, text: "Wie fragst du höflich nach der Herkunft?", options: ["Woher kommen Sie?", "Woher kommst du?", "Woher kommen Sie?", "Sie?"], correctAnswer: 0 },
-  { id: 437, text: "Was passt? „Ich ___ aus Russland.“", options: ["komme", "kommst", "kommt", "kommen"], correctAnswer: 0 },
-  { id: 438, text: "Was passt? „Er ___ aus China.“", options: ["kommt", "kommen", "kommst", "komme"], correctAnswer: 0 },
-  { id: 439, text: "Wie fragst du nach der Sprache?", options: ["Welche Sprachen sprichst du?", "Wie heißt du?", "Woher kommst du?", "Wo wohnst du?"], correctAnswer: 0 },
-  { id: 440, text: "Welche Antwort passt? „Welche Sprachen sprichst du?“", options: ["Ich spreche Deutsch und Englisch", "Ich komme Deutsch", "Ich bin Englisch", "Ich wohne Englisch"], correctAnswer: 0 },
-  { id: 441, text: "Wie sagt man „I am from Germany“ auf Deutsch?", options: ["Ich komme aus Deutschland", "Ich bin Deutschland", "Ich wohne Deutschland", "Ich spreche Deutschland"], correctAnswer: 0 },
-  { id: 442, text: "Welche Frage passt zur Antwort „Ich spreche Deutsch“?", options: ["Welche Sprachen sprichst du?", "Woher kommst du?", "Wie heißt du?", "Wo wohnst du?"], correctAnswer: 0 },
-  { id: 443, text: "Wie sagst du, dass du in Wien lebst?", options: ["Ich wohne in Wien", "Ich komme Wien", "Ich heiße Wien", "Ich bin Wien alt"], correctAnswer: 0 },
-  { id: 444, text: "Welche Antwort passt zu „Wie heißen Sie?“", options: ["Ich heiße Müller", "Ich komme Müller", "Ich wohne Müller", "Ich spreche Müller"], correctAnswer: 0 },
-  { id: 445, text: "Wie fragt man nach der Herkunft einer Person?", options: ["Woher kommst du?", "Wie alt bist du?", "Wo wohnst du?", "Wer bist du?"], correctAnswer: 0 },
-  { id: 446, text: "Welche Antwort passt? „Wo wohnen Sie?“", options: ["Ich wohne in Rom", "Ich heiße Rom", "Ich komme Rom", "Ich bin Rom alt"], correctAnswer: 0 },
-  { id: 447, text: "Wie heißt die höfliche Form von „du“?", options: ["Sie", "Ihr", "Er", "Es"], correctAnswer: 0 },
-  { id: 448, text: "Welche Frage passt? „Ich heiße Tom.“", options: ["Wie heißt du?", "Woher kommst du?", "Wie alt bist du?", "Was machst du?"], correctAnswer: 0 },
-  { id: 449, text: "Was passt? „Mein Name ___ Klaus.“", options: ["ist", "bin", "seid", "bist"], correctAnswer: 0 },
-  { id: 450, text: "Welche Antwort passt zu „Wer ist das?“", options: ["Das ist mein Freund", "Ich heiße Freund", "Ich komme Freund", "Ich wohne Freund"], correctAnswer: 0 },
-  { id: 451, text: "Was passt? „Ich ___ Lara.“", options: ["bin", "bist", "seid", "ist"], correctAnswer: 0 },
-  { id: 452, text: "Wie fragst du: „What is your name?“", options: ["Wie heißt du?", "Wer bist du?", "Woher kommst du?", "Wo wohnst du?"], correctAnswer: 0 },
-  { id: 453, text: "Welche Antwort passt? „Wie heißt du?“", options: ["Ich heiße Paul", "Ich wohne Paul", "Ich komme Paul", "Ich bin Paul alt"], correctAnswer: 0 },
-  { id: 454, text: "Welche Frage passt? „Ich komme aus Italien.“", options: ["Woher kommst du?", "Wie heißt du?", "Wer bist du?", "Wie alt bist du?"], correctAnswer: 0 },
-  { id: 455, text: "Wie sagt man „He is from Turkey“?", options: ["Er kommt aus der Türkei", "Er wohnt Türkei", "Er heißt Türkei", "Er spricht Türkei"], correctAnswer: 0 },
-  { id: 456, text: "Welche Sprache passt zu „Spanien“?", options: ["Spanisch", "Spanienisch", "Spanier", "Spanierisch"], correctAnswer: 0 },
-  { id: 457, text: "Welche Sprache passt zu „Deutschland“?", options: ["Deutsch", "Deutscher", "Deutschisch", "Deutschlandisch"], correctAnswer: 0 },
-  { id: 458, text: "Was passt? „Sie(Singular) ___ in Zürich.“", options: ["wohnt", "wohnen", "wohnst", "wohne"], correctAnswer: 0 },
-  { id: 459, text: "Wie fragst du nach der Sprache?", options: ["Welche Sprachen sprechen Sie?", "Wie heißen Sie?", "Wo wohnen Sie?", "Wie alt sind Sie?"], correctAnswer: 0 },
-  { id: 460, text: "Welche Antwort passt? „Welche Sprachen sprechen Sie?“", options: ["Ich spreche Deutsch", "Ich wohne Deutsch", "Ich heiße Deutsch", "Ich komme Deutsch"], correctAnswer: 0 },
-  { id: 461, text: "Was passt? „Du ___ Maria?“", options: ["bist", "bin", "seid", "ist"], correctAnswer: 0 },
-  { id: 462, text: "Wie heißt die Frage nach dem Namen (formell)?", options: ["Wie heißen Sie?", "Wer sind Sie?", "Woher kommen Sie?", "Wie alt sind Sie?"], correctAnswer: 0 },
-  { id: 463, text: "Welche Antwort passt? „Woher kommen Sie?“", options: ["Ich komme aus Russland", "Ich wohne Russland", "Ich heiße Russland", "Ich spreche Russland"], correctAnswer: 0 },
-  { id: 464, text: "Wie sagst du: „My name is Alex“?", options: ["Mein Name ist Alex", "Ich komme Alex", "Ich spreche Alex", "Ich wohne Alex"], correctAnswer: 0 },
-  { id: 465, text: "Welche Begrüßung passt zu 09:00 Uhr?", options: ["Guten Morgen", "Guten Abend", "Gute Nacht", "Tschüs"], correctAnswer: 0 },
-  { id: 466, text: "Welche Verabschiedung ist informell?", options: ["Tschüs", "Guten Morgen", "Guten Tag", "Gute Nacht"], correctAnswer: 0 },
-  { id: 467, text: "Was passt? „Er ___ Paolo.“", options: ["heißt", "heiße", "heißen", "heißt du"], correctAnswer: 0 },
-  { id: 468, text: "Was passt? „Ich ___ aus der Schweiz.“", options: ["komme", "kommt", "kommst", "kommen"], correctAnswer: 0 },
-  { id: 469, text: "Welche Frage passt zu „Ich wohne in Madrid“?", options: ["Wo wohnst du?", "Wie heißt du?", "Wer bist du?", "Wie alt bist du?"], correctAnswer: 0 },
-  { id: 470, text: "Was passt? „Wir ___ Anna und Leo.“", options: ["sind", "seid", "bin", "ist"], correctAnswer: 0 },
-  { id: 471, text: "Welche Antwort passt? „Wie heißen Sie?“", options: ["Ich heiße Müller", "Ich komme Müller", "Ich wohne Müller", "Ich spreche Müller"], correctAnswer: 0 },
-  { id: 472, text: "Wie fragst du nach dem Land?", options: ["Aus welchem Land kommst du?", "Wie heißt du?", "Wo wohnst du?", "Was machst du?"], correctAnswer: 0 },
-  { id: 473, text: "Welche Antwort passt? „Aus welchem Land kommst du?“", options: ["Ich komme aus Brasilien", "Ich heiße Brasilien", "Ich wohne Brasilien", "Ich bin Brasilien alt"], correctAnswer: 0 },
-  { id: 474, text: "Was passt? „Sie ___ Aylin.“", options: ["ist", "bist", "seid", "bin"], correctAnswer: 0 },
-  { id: 475, text: "Wie sagt man höflich „Where do you live?“", options: ["Wo wohnen Sie?", "Wo wohnt du?", "Wer wohnen Sie?", "Wie wohnen sie?"], correctAnswer: 0 },
-  { id: 476, text: "Welche Antwort passt zu „Wo wohnen Sie?“", options: ["Ich wohne in München", "Ich komme München", "Ich heiße München", "Ich spreche München"], correctAnswer: 0 },
-  { id: 477, text: "Was passt? „Ich ___ zwei Kinder.“", options: ["habe", "habt", "hat", "hast"], correctAnswer: 0 },
-  { id: 478, text: "Wie sagst du: „He speaks German“?", options: ["Er spricht Deutsch", "Er spreche Deutsch", "Er sprechen Deutsch", "Er spricht Deutschland"], correctAnswer: 0 },
-  { id: 479, text: "Welche Antwort passt? „Welche Sprachen sprichst du?“", options: ["Ich spreche Englisch", "Ich wohne Englisch", "Ich heiße Englisch", "Ich komme Englisch"], correctAnswer: 0 },
-  { id: 480, text: "Wie sagst du: „We are from Italy“?", options: ["Wir kommen aus Italien", "Wir ist Italien", "Wir heißt Italien", "Wir sprechen Italien"], correctAnswer: 0 },
-  { id: 481, text: "Wie sagt man: „She is Maria“?", options: ["Sie ist Maria", "Er ist Maria", "Du bist Maria", "Es ist Maria"], correctAnswer: 0 },
-  { id: 482, text: "Welche Frage passt? „Er kommt aus Japan.“", options: ["Woher kommt er?", "Wie heißt er?", "Wo wohnt er?", "Wer ist er?"], correctAnswer: 0 },
-  { id: 483, text: "Welche Antwort passt? „Woher kommen Sie?“", options: ["Ich komme aus Mexiko", "Ich heiße Mexiko", "Ich wohne Mexiko", "Ich spreche Mexiko"], correctAnswer: 0 },
-  { id: 484, text: "Was passt? „Ich ___ Anna und du?“", options: ["bin", "bist", "ist", "seid"], correctAnswer: 0 },
-  { id: 485, text: "Welche Begrüßung ist richtig?", options: ["Guten Abend", "Gute Morgen", "Hallo Sie", "Schönen Nacht"], correctAnswer: 0 },
-  { id: 486, text: "Wie sagst du: „My name is Leo“?", options: ["Mein Name ist Leo", "Ich komme Leo", "Ich wohne Leo", "Ich spreche Leo"], correctAnswer: 0 },
-  { id: 487, text: "Welche Antwort passt? „Wie heißt du?“", options: ["Ich heiße Sara", "Ich wohne Sara", "Ich komme Sara", "Ich spreche Sara"], correctAnswer: 0 },
-  { id: 488, text: "Was passt? „Sie (Singular) ___ aus Polen.“", options: ["kommt", "kommst", "komme", "kommen"], correctAnswer: 0 },
-  { id: 489, text: "Welche Frage passt zu „Ich bin Amir.“?", options: ["Wer bist du?", "Wie alt bist du?", "Woher kommst du?", "Wo wohnst du?"], correctAnswer: 0 },
-  { id: 490, text: "Wie sagt man: „We speak German“?", options: ["Wir sprechen Deutsch", "Wir spreche Deutsch", "Wir spricht Deutsch", "Wir sprechen Deutschland"], correctAnswer: 0 },
-  { id: 491, text: "Welche Antwort passt? „Woher kommst du?“", options: ["Ich komme aus Indien", "Ich heiße Indien", "Ich wohne Indien", "Ich bin Indien 20"], correctAnswer: 0 },
-  { id: 492, text: "Was passt? „Ihr ___ aus Wien.“", options: ["kommt", "kommen", "komme", "kommst"], correctAnswer: 0 },
-  { id: 493, text: "Welche Zahl ist richtig? 15 =", options: ["fünfzehn", "fünfzig", "fünf", "fünfzehnte"], correctAnswer: 0 },
-  { id: 494, text: "Welche Zahl ist richtig? 23 =", options: ["dreiundzwanzig", "zweidreißig", "zwanzigdrei", "dreizehn"], correctAnswer: 0 },
-  { id: 495, text: "Wie buchstabiert man „Berlin“?", options: ["B – E – R – L – I – N", "B – A – R – L – A – N", "P – E – R – L – I – N", "B – U – R – L – O – N"], correctAnswer: 0 },
-  { id: 496, text: "Welche Frage passt zu einer Telefonnummer?", options: ["Wie ist deine Telefonnummer?", "Wie alt bist du?", "Woher kommst du?", "Wie heißt du?"], correctAnswer: 0 },
-  { id: 497, text: "Welche Antwort passt? „Wie ist deine Telefonnummer?“", options: ["Meine Telefonnummer ist 490 22 11", "Ich heiße Lara", "Ich komme aus Wien", "Ich wohne in Köln"], correctAnswer: 0 },
-  { id: 498, text: "Welche Frage passt zur Adresse?", options: ["Wie ist deine Adresse?", "Wie heißt du?", "Wie spät ist es?", "Was machst du?"], correctAnswer: 0 },
-  { id: 499, text: "Welche Antwort passt? „Wie ist deine Adresse?“", options: ["Meine Adresse ist Marktstraße 12", "Ich komme aus Spanien", "Ich spreche Deutsch", "Ich bin 20"], correctAnswer: 0 },
-  { id: 500, text: "Welcher Beruf passt? „Ich arbeite in der Schule.“", options: ["Ich bin Lehrer", "Ich bin Fahrer", "Ich bin Arzt", "Ich bin Kellner"], correctAnswer: 0 }
+  {
+    "id": 1,
+    "text": "Когда была провозглашена Независимость нашей Республики?",
+    "options": [
+      "8 декабря 1992 года",
+      "1 сентября 1992 года",
+      "31 августа 1991 года",
+      "31 августа 1992 года"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 2,
+    "text": "В каком из нижеприведенных вариантов слово обозначает лицо женского пола?",
+    "options": [
+      "Узбекские",
+      "Узбек",
+      "Узбекский",
+      "Узбечка"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 3,
+    "text": "В каком варианте указан синоним слова “государство”?",
+    "options": [
+      "Независимость",
+      "Страна",
+      "Узбекистан",
+      "Дом"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 4,
+    "text": "Какое слово является прилагательным?",
+    "options": [
+      "Страна",
+      "Иностранный",
+      "Иностранец",
+      "Страноведение"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 5,
+    "text": "Вместо точек поставьте прилагательное в нужной форме: “…… будущее независимого Узбекистана в руках молодёжи»",
+    "options": [
+      "Прекрасный",
+      "Прекрасная",
+      "Прекрасные",
+      "Прекрасное"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 6,
+    "text": "Какого рода слово «имя» в русском языке?",
+    "options": [
+      "женского",
+      "мужского",
+      "среднего",
+      "общего"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 7,
+    "text": "Какое слово является существительным?",
+    "options": [
+      "Общество",
+      "Общественный",
+      "Сообща",
+      "Общий"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 8,
+    "text": "В каком варианте верно указан перевод сочетания «ko’p millatli»?",
+    "options": [
+      "многонациональный",
+      "много национальностей",
+      "много городов",
+      "малонациональный"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 9,
+    "text": "Вместо точек вставьте подходящее по смыслу слово: «Наша ……. богата неисчерпаемыми природными ресурсами»",
+    "options": [
+      "дом",
+      "общество",
+      "государство",
+      "родина"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 10,
+    "text": "Выберите окончание прилагательного: «Молод... поколение учится и трудится ради блага своей страны»",
+    "options": [
+      "–ый",
+      "–ое",
+      "–ой",
+      "–ые"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 11,
+    "text": "Употребите слово в нужной форме: «Единственный завод авиастроения в Центральной Азии находится тоже в (Узбекистан)»",
+    "options": [
+      "Узбекистане",
+      "Узбекистана",
+      "Узбекистану",
+      "Узбекистаном"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 12,
+    "text": "Переведите на русский язык слово: «qadimiy»",
+    "options": [
+      "Деревня",
+      "Дерево",
+      "Древний",
+      "Древо"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 13,
+    "text": "Омонимы – это …",
+    "options": [
+      "слова, имеющие два или более значений",
+      "слова, близкие по значению, но разные по написанию",
+      "слова, противоположные по значению",
+      "однозвучные слова, отличающиеся по значению"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 14,
+    "text": "Синонимы – это …",
+    "options": [
+      "слова, близкие по значению, но разные по написанию",
+      "однозвучные слова, отличающиеся по значению",
+      "слова, противоположные по значению",
+      "слова, имеющие два или более значений"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 15,
+    "text": "Антонимы – это …",
+    "options": [
+      "однозвучные слова, отличающиеся по значению",
+      "слова, близкие по значению, но разные по написанию",
+      "слова, противоположные по значению",
+      "слова, имеющие два или более значений"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 16,
+    "text": "Многозначные слова – это …",
+    "options": [
+      "устойчивые сочетания слов",
+      "слова, имеющие два или более значений",
+      "слова, попавшие в русский язык из других языков",
+      "однозвучные слова, отличающиеся по значению"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 17,
+    "text": "Найдите современный синоним слова «чело»",
+    "options": [
+      "лоб",
+      "щеки",
+      "глаз",
+      "губы"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 18,
+    "text": "Найдите перевод слова «распространённый»",
+    "options": [
+      "tarqalmagan",
+      "o’zlashgan",
+      "ko’p ma’noli",
+      "tarqalgan"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 19,
+    "text": "Какое из словосочетаний имеет значение «чистый»",
+    "options": [
+      "свежая газета",
+      "свежий воздух",
+      "свежий хлеб",
+      "свежие цветы"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 20,
+    "text": "Найдите ряд названий овощей",
+    "options": [
+      "редис, репа, капуста",
+      "бокс, хоккей, футбол",
+      "сандалии, унты, туфли",
+      "клещи, стамеска, напильник"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 21,
+    "text": "Найдите значение фразеологизма «кот наплакал»",
+    "options": [
+      "вредно",
+      "мало",
+      "глупо",
+      "много"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 22,
+    "text": "Найдите значение фразеологизма «бить баклуши»",
+    "options": [
+      "требовать",
+      "радоваться",
+      "обманывать",
+      "бездельничать"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 23,
+    "text": "Найдите значение фразеологизма «водить за нос»",
+    "options": [
+      "запоминать",
+      "огорчать",
+      "обманывать",
+      "унижать"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 24,
+    "text": "Имя существительное - это часть речи, которая обозначает ...",
+    "options": [
+      "предмет",
+      "признак предмета",
+      "действие предмета",
+      "обозначает процесс"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 25,
+    "text": "Укажите имя существительное",
+    "options": [
+      "ты",
+      "белый",
+      "работает",
+      "молоко"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 26,
+    "text": "Укажите имя существительное",
+    "options": [
+      "знатный",
+      "море",
+      "думали",
+      "она"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 27,
+    "text": "Укажите имя существительное",
+    "options": [
+      "играет",
+      "хороший",
+      "халат",
+      "мы"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 28,
+    "text": "К одушевлённым именам существительным относятся",
+    "options": [
+      "собака, девочка",
+      "корова, стул",
+      "пенал, школа",
+      "ручка, осел"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 29,
+    "text": "Найдите собственное имя существительное",
+    "options": [
+      "Волга",
+      "Река",
+      "Фамилия",
+      "Имя"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 30,
+    "text": "На какие вопросы отвечают слова: барсук, пальто, кедр, зима, лиса?",
+    "options": [
+      "Сколько? Который?",
+      "Какие? Какой?",
+      "Что делают? Что делали?",
+      "Кто? Что?"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 31,
+    "text": "Собственные имена существительные пишутся …",
+    "options": [
+      "в скобках",
+      "с большой буквы",
+      "с маленькой буквы",
+      "через дефис"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 32,
+    "text": "Сколько в русском языке падежей?",
+    "options": [
+      "2",
+      "4",
+      "6",
+      "5"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 33,
+    "text": "К первому склонению относятся существительные …",
+    "options": [
+      "женского и мужского рода с окончанием А или Я",
+      "женского и среднего рода с окончанием Ы или Я",
+      "среднего рода с окончанием А или Я",
+      "мужского рода с нулевым окончанием"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 34,
+    "text": "Определите склонение существительного ТИШЬ",
+    "options": [
+      "первое склонение",
+      "третье склонение",
+      "второе склонение",
+      "четвёртое склонение"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 35,
+    "text": "Просклонять существительное – это …",
+    "options": [
+      "поставить ударение",
+      "изменить по лицам",
+      "изменить окончание",
+      "изменить по падежам"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 36,
+    "text": "Местоимение – это",
+    "options": [
+      "второстепенный член предложения",
+      "главный член предложения",
+      "часть речи",
+      "часть слова"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 37,
+    "text": "Укажите местоимения 1-го лица",
+    "options": [
+      "я, мы",
+      "ты, вы",
+      "он, она",
+      "оно, они"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 38,
+    "text": "Какое местоимение относится к личным?",
+    "options": [
+      "первый",
+      "мы",
+      "этот",
+      "сколько"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 39,
+    "text": "В каком варианте дано указательное местоимение?",
+    "options": [
+      "тот",
+      "мы",
+      "собой",
+      "сколько"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 40,
+    "text": "В каком варианте даны отрицательные местоимения?",
+    "options": [
+      "Этот, тот, наш",
+      "Ты, мы, вы, он, она, они",
+      "кто-то, что-то, некто, нечто, какой-то",
+      "Никто, ничто, некого, нечего, никакой"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 41,
+    "text": "Найдите подходящее местоимение. В столовой … не осталось",
+    "options": [
+      "никогда",
+      "что-то",
+      "нигде",
+      "ничего"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 42,
+    "text": "Определите пословицу с указательным местоимением",
+    "options": [
+      "Неверный друг, опаснее врага",
+      "Кто скоро помог, тот дважды помог",
+      "Учись смолоду - пригодится в старости",
+      "Поздно встанешь – мало сделаешь"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 43,
+    "text": "Сколько местоимений в предложении: У меня живет котёнок, эта киска, как тот львёнок",
+    "options": [
+      "3",
+      "4",
+      "2",
+      "5"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 44,
+    "text": "… – это самостоятельная часть речи, которая обозначает действие или состояние предмета и отвечает на вопросы: что делать? что сделать?",
+    "options": [
+      "окончание",
+      "спряжение",
+      "глагол",
+      "время"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 45,
+    "text": "… время глагола указывает, что действие уже состоялось",
+    "options": [
+      "Настоящее",
+      "Среднее",
+      "Прошедшее",
+      "Будущее"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 46,
+    "text": "… время обозначает, что действие совершится после момента речи",
+    "options": [
+      "Будущее",
+      "Прошедшее",
+      "Среднее",
+      "Настоящее"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 47,
+    "text": "Сколько типов спряжений имеет глагол в русском языке?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 48,
+    "text": "Поставьте глагол «писать» в настоящем времени: Я …… письмо",
+    "options": [
+      "пишу",
+      "писал",
+      "будет писать",
+      "писать"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 49,
+    "text": "Вместо точек вставьте глагол «любить» в нужной форме: Мы …… гулять в парке вечером",
+    "options": [
+      "любить",
+      "любил",
+      "любим",
+      "любят"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 50,
+    "text": "Формы будущего времени глагола бывают",
+    "options": [
+      "родная и чужая",
+      "простая и сложная",
+      "чёрная и белая",
+      "прошедшее и среднее"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 51,
+    "text": "Сложное будущее время глаголов несовершенного вида образуется с помощью вспомогательного глагола …",
+    "options": [
+      "быть",
+      "есть",
+      "хотеть",
+      "дать"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 52,
+    "text": "Укажите вариант с формой простого будущего времени глагола",
+    "options": [
+      "решить",
+      "красить",
+      "будешь стараться",
+      "написать"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 53,
+    "text": "Укажите вариант с формой простого будущего времени глагола",
+    "options": [
+      "будет улыбаться",
+      "красили",
+      "прочитать",
+      "решили"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 54,
+    "text": "Форма 1 лица выражает, что действие совершает",
+    "options": [
+      "собеседник говорящего",
+      "говорящий",
+      "предмет",
+      "все коммуниканты"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 55,
+    "text": "Найдите глагол в форме первого лица",
+    "options": [
+      "рисую",
+      "поешь",
+      "плавает",
+      "плавают"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 56,
+    "text": "Найдите глагол в форме второго лица",
+    "options": [
+      "поешь",
+      "рисую",
+      "плавает",
+      "плавают"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 57,
+    "text": "Найдите глагол в форме третьего лица",
+    "options": [
+      "думается",
+      "рисуем",
+      "поете",
+      "плавают"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 58,
+    "text": "Поставьте глагол «писать» в прошедшем времени: Он … письмо.",
+    "options": [
+      "писать",
+      "Написал",
+      "будет писать",
+      "пишу"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 59,
+    "text": "Как называется сказуемое, которое состоит только из одного глагола?",
+    "options": [
+      "Именное сказуемое",
+      "Составное глагольное сказуемое",
+      "Простое глагольное сказуемое",
+      "Неопределенное сказуемое"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 60,
+    "text": "Какой тип сказуемого включает в себя несколько глаголов, объединенных в единое выражение действия?",
+    "options": [
+      "Составное глагольное сказуемое",
+      "Простое глагольное сказуемое",
+      "Именное сказуемое",
+      "Неопределенное сказуемое"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 61,
+    "text": "Как называется сказуемое, которое состоит из существительного или местоимения, указывающего на действие или состояние подлежащего?",
+    "options": [
+      "Составное глагольное сказуемое",
+      "Именное сказуемое",
+      "Простое глагольное сказуемое",
+      "Наречное сказуемое"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 62,
+    "text": "Какой из нижеперечисленных вариантов не является способом выражения сказуемого?",
+    "options": [
+      "Наречие",
+      "Глагол",
+      "Прилагательное",
+      "Существительное"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 63,
+    "text": "Определите тип сказуемого в предложении «Мария читает книгу».",
+    "options": [
+      "Составное глагольное сказуемое",
+      "Простое глагольное сказуемое",
+      "Именное сказуемое",
+      "Неопределенное сказуемое"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 64,
+    "text": "Определите тип сказуемого в предложении «Он был занят работой».",
+    "options": [
+      "Простое глагольное сказуемое",
+      "Составное глагольное сказуемое",
+      "Именное сказуемое",
+      "Неопределенное сказуемое"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 65,
+    "text": "Какая достопримечательность является символом Москвы?",
+    "options": [
+      "Красная площадь",
+      "Эрмитаж",
+      "Разводной мост",
+      "Отели"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 66,
+    "text": "Какая река протекает через Москву?",
+    "options": [
+      "Москва-река",
+      "Волга",
+      "Нева",
+      "Днепр"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 67,
+    "text": "В каком году была основана Москва?",
+    "options": [
+      "1135",
+      "1145",
+      "1147",
+      "1150"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 68,
+    "text": "Что такое имя прилагательное?",
+    "options": [
+      "Самостоятельная часть речи, которая обозначает время",
+      "Самостоятельная часть речи, которая обозначает действие",
+      "Самостоятельная часть речи, которая обозначает предмет",
+      "Самостоятельная часть речи, которая обозначает признак"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 69,
+    "text": "Что такое имя существительное?",
+    "options": [
+      "Самостоятельная часть речи, которая обозначает признак",
+      "Самостоятельная часть речи, которая обозначает действие",
+      "Самостоятельная часть речи, которая обозначает предмет",
+      "Самостоятельная часть речи, которая обозначает время"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 70,
+    "text": "Что такое глагол?",
+    "options": [
+      "Самостоятельная часть речи, которая обозначает действие",
+      "Самостоятельная часть речи, которая обозначает признак",
+      "Самостоятельная часть речи, которая обозначает предмет",
+      "Самостоятельная часть речи, которая обозначает род"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 71,
+    "text": "Как изменяется имя прилагательное?",
+    "options": [
+      "по числам, родам и падежам",
+      "только по падежам",
+      "только по родам",
+      "по родам, лицам и времени"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 72,
+    "text": "Какие две формы имеет прилагательное?",
+    "options": [
+      "Безличную и личную",
+      "Полную и краткую",
+      "Простую и отглагольную",
+      "Положительную и отрицательную"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 73,
+    "text": "Какую функцию выполняет полная форма прилагательного в предложении?",
+    "options": [
+      "Функцию подлежащего",
+      "Функцию дополнения",
+      "Функцию сказуемого",
+      "Функцию определения"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 74,
+    "text": "Какую функцию выполняет краткая форма прилагательного в предложении?",
+    "options": [
+      "Функцию обстоятельства",
+      "Функцию подлежащего",
+      "Функцию сказуемого",
+      "Функцию дополнения"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 75,
+    "text": "Какие разряды имеет прилагательное?",
+    "options": [
+      "Конкретные, отвлечённые, собирательные, вещественные",
+      "Качественные, относительные, притяжательные",
+      "Определительные, неопределённые, указательные",
+      "Целые, дробные, порядковые"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 76,
+    "text": "Какие разряды имеет существительное?",
+    "options": [
+      "Конкретные, отвлечённые, собирательные, вещественные",
+      "Определительные, неопределённые, указательные",
+      "Целые, дробные, порядковые",
+      "Качественные, относительные, притяжательные"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 77,
+    "text": "Какие разряды имеет числительное?",
+    "options": [
+      "Целые, дробные, порядковые",
+      "Качественные, относительные, притяжательные",
+      "Конкретные, отвлечённые, собирательные, вещественные",
+      "Определительные, неопределённые, указательные"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 78,
+    "text": "Что обозначают качественные прилагательные?",
+    "options": [
+      "Обозначают продолжительные, повторяющиеся действия",
+      "Принадлежность предмета лицу или животному",
+      "Цвет, размер, вкус, оценку",
+      "Обозначают признак предмета через отношение к месту"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 79,
+    "text": "Какие прилагательные обозначают принадлежность предмета лицу или животному?",
+    "options": [
+      "Относительные",
+      "Качественные",
+      "Вещественные",
+      "Притяжательные"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 80,
+    "text": "Какие прилагательные имеют сравнительную и превосходную степень?",
+    "options": [
+      "Притяжательные",
+      "Вещественные",
+      "Относительные",
+      "Качественные"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 81,
+    "text": "Как называются степени сравнения прилагательных?",
+    "options": [
+      "Краткая и дополнительная",
+      "Совершенная и несовершенная",
+      "Сравнительная и превосходная",
+      "Неопределённая и указательная"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 82,
+    "text": "Укажите превосходную степень прилагательного",
+    "options": [
+      "более умный",
+      "Наиболее умный",
+      "умнее",
+      "менее умный"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 83,
+    "text": "Определите разряд прилагательного «лисья»",
+    "options": [
+      "Относительное",
+      "Качественное",
+      "Притяжательное",
+      "Положительное"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 84,
+    "text": "Определите разряд прилагательного «вкусный»",
+    "options": [
+      "Качественное",
+      "Относительное",
+      "Положительное",
+      "Притяжательное"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 85,
+    "text": "Определите разряд прилагательного «осенний»",
+    "options": [
+      "Относительное",
+      "Положительное",
+      "Притяжательное",
+      "Качественное"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 86,
+    "text": "Укажите прилагательное, которое не является качественным",
+    "options": [
+      "Громкий",
+      "Сегодняшний",
+      "Весёлый",
+      "Чудесный"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 87,
+    "text": "Выберите прилагательное в простой сравнительной степени",
+    "options": [
+      "Гуще",
+      "Самый густой",
+      "Густейший",
+      "Более густой"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 88,
+    "text": "Выберите вариант, где в прилагательном пишется суффикс -ск-",
+    "options": [
+      "Кулац..ие бои",
+      "Немец..ий язык",
+      "Казац..ий атаман",
+      "Француз..ий салат"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 89,
+    "text": "Не имеет степени сравнения прилагательное",
+    "options": [
+      "Узкий",
+      "Хороший",
+      "Дорогой",
+      "Снежный"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 90,
+    "text": "Не имеет степени сравнения прилагательное",
+    "options": [
+      "Плохой",
+      "Заячий",
+      "Мудрый",
+      "Умный"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 91,
+    "text": "Выберите относительное прилагательное",
+    "options": [
+      "Заячий",
+      "Вкусный",
+      "Городской",
+      "Красный"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 92,
+    "text": "Выберите относительное прилагательное",
+    "options": [
+      "Детский",
+      "Удачливый",
+      "Медвежий",
+      "Глупый"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 93,
+    "text": "Выберите строку, в которой все слова имена прилагательные",
+    "options": [
+      "Смотрит, красивая, перескакал, сварился",
+      "Быстрый, мелкая, ужасное, жёлтый",
+      "Картинная, пальчик, рубашка, спит",
+      "Светящийся, улыбчивый, играется, ненависть"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 94,
+    "text": "Какую функцию выполняют наречия в предложении?",
+    "options": [
+      "Обстоятельства",
+      "Сказуемого",
+      "Подлежащего",
+      "Определения"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 95,
+    "text": "Что такое наречие?",
+    "options": [
+      "Изменяемая часть речи",
+      "Часть речи, относящаяся к существительным",
+      "Часть речи, склоняющаяся и спрягающаяся",
+      "Часть речи, выражающая признак действия"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 96,
+    "text": "Какие наречия являются наречиями цели?",
+    "options": [
+      "Сейчас, потом, ежедневно",
+      "Назло, нарочно, умышленно",
+      "Давно, недавно, завтра",
+      "Поздно, всегда, никогда"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 97,
+    "text": "На какие вопросы отвечают наречия времени?",
+    "options": [
+      "Когда? С каких пор?",
+      "Как? Каким образом?",
+      "Где? Куда? Откуда?",
+      "Сколько? В какой мере?"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 98,
+    "text": "На какие вопросы отвечают наречия образа действия?",
+    "options": [
+      "Как? Каким образом?",
+      "Когда? С каких пор?",
+      "Где? Куда? Откуда?",
+      "Сколько? В какой мере?"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 99,
+    "text": "На какие вопросы отвечают наречия места?",
+    "options": [
+      "Сколько? В какой мере?",
+      "Где? Куда? Откуда?",
+      "Как? Каким образом?",
+      "Когда? С каких пор?"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 100,
+    "text": "К какой части речи наиболее часто синтаксически примыкают наречия?",
+    "options": [
+      "Существительным",
+      "Прилагательным",
+      "Глаголам",
+      "Местоимениям"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 101,
+    "text": "Укажите наречие, означающее «Где?»",
+    "options": [
+      "Здесь",
+      "Сначала",
+      "Завтра",
+      "Сегодня"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 102,
+    "text": "Укажите наречие, означающее «Когда?»",
+    "options": [
+      "Справа",
+      "Сегодня",
+      "Так",
+      "Туда"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 103,
+    "text": "Как звучит сравнительная степень к наречию «глубоко»?",
+    "options": [
+      "Глубочее",
+      "Глубже",
+      "Самое глубокое",
+      "Глубжее"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 104,
+    "text": "Укажите разряд наречий образа действия",
+    "options": [
+      "вчера, сегодня, завтра",
+      "здесь, там, туда",
+      "быстро, хорошо, весело",
+      "очень, совсем, слегка"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 105,
+    "text": "Укажите разряд наречий места",
+    "options": [
+      "быстро, хорошо, весело",
+      "вчера, сегодня, завтра",
+      "здесь, там, туда",
+      "очень, совсем, слегка"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 106,
+    "text": "Укажите разряд наречий времени",
+    "options": [
+      "здесь, там, туда",
+      "быстро, хорошо, весело",
+      "вчера, сегодня, завтра",
+      "очень, совсем, слегка"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 107,
+    "text": "Укажите наречие, которое пишется через дефис",
+    "options": [
+      "По-дружески",
+      "Вчера",
+      "Внизу",
+      "Вскоре"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 108,
+    "text": "Укажите наречие, которое пишется слитно",
+    "options": [
+      "Во-вторых",
+      "По-новому",
+      "Вдаль",
+      "Кое-как"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 109,
+    "text": "Какое из этих слов является наречием?",
+    "options": [
+      "Быстрый",
+      "Быстрота",
+      "Быстро",
+      "Убыстрять"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 110,
+    "text": "Укажите предложение с наречием",
+    "options": [
+      "Он пел красивую песню",
+      "Солнце светило ярко",
+      "Это был долгий путь",
+      "У неё красный шарф"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 111,
+    "text": "Какие местоимения относятся к притяжательным?",
+    "options": [
+      "я, ты, он",
+      "мой, твой, его",
+      "тот, этот, такой",
+      "кто, что, какой"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 112,
+    "text": "Укажите возвратное местоимение",
+    "options": [
+      "Я",
+      "Себя",
+      "Он",
+      "Они"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 113,
+    "text": "В каком падеже стоит местоимение «мне»?",
+    "options": [
+      "Именительный",
+      "Родительный",
+      "Дательный",
+      "Творительный"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 114,
+    "text": "Укажите вопросительное местоимение",
+    "options": [
+      "Никто",
+      "Кто-то",
+      "Кто?",
+      "Некто"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 115,
+    "text": "Как изменяются личные местоимения 3-го лица?",
+    "options": [
+      "По падежам и числам",
+      "По падежам, числам и родам",
+      "Только по числам",
+      "Школьным правилам"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 116,
+    "text": "Определите лицо местоимения «она»",
+    "options": [
+      "1-е лицо",
+      "2-е лицо",
+      "3-е лицо",
+      "4-е лицо"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 117,
+    "text": "В предложении «Я вижу тебя» местоимение «тебя» является...",
+    "options": [
+      "Подлежащим",
+      "Дополнением",
+      "Определением",
+      "Обстоятельством"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 118,
+    "text": "Укажите определительное местоимение",
+    "options": [
+      "Весь",
+      "Никто",
+      "Свой",
+      "Наш"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 119,
+    "text": "Как пишется местоимение «кое-кто»?",
+    "options": [
+      "Слитно",
+      "Раздельно",
+      "Через дефис",
+      "В кавычках"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 120,
+    "text": "Укажите неопределенное местоимение",
+    "options": [
+      "Никакой",
+      "Нечто",
+      "Такой",
+      "Сам"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 121,
+    "text": "Глаголы совершенного вида отвечают на вопрос...",
+    "options": [
+      "Что делать?",
+      "Что сделать?",
+      "Что делают?",
+      "Что будут делать?"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 122,
+    "text": "Укажите глагол несовершенного вида",
+    "options": [
+      "Решить",
+      "Прыгнуть",
+      "Читать",
+      "Прочитать"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 123,
+    "text": "Что обозначает глагол совершенного вида?",
+    "options": [
+      "Незавершенное действие",
+      "Действие в процессе",
+      "Действие, достигшее результата",
+      "Повторяющееся действие"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 124,
+    "text": "Укажите глагол II спряжения",
+    "options": [
+      "Читать",
+      "Писать",
+      "Смотреть",
+      "Думать"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 125,
+    "text": "Какое окончание имеет глагол I спряжения в 3-м лице мн. ч.?",
+    "options": [
+      "-ат, -ят",
+      "-ут, -ют",
+      "-им, -ит",
+      "-ем, -ет"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 126,
+    "text": "Укажите глагол-исключение, относящийся ко II спряжению",
+    "options": [
+      "Брить",
+      "Стелить",
+      "Слышать",
+      "Читать"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 127,
+    "text": "В каком наклонении глагол обозначает приказ или просьбу?",
+    "options": [
+      "Изъявительном",
+      "Повелительном",
+      "Сослагательном",
+      "Условном"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 128,
+    "text": "Как образуется условное наклонение глагола?",
+    "options": [
+      "С помощью частицы БЫ",
+      "Путем добавления суффикса -Л-",
+      "Изменением окончания",
+      "Написанием частицы НЕ"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 129,
+    "text": "Укажите глагол в изъявительном наклонении",
+    "options": [
+      "Читай",
+      "Читал бы",
+      "Читаю",
+      "Пусть читает"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 130,
+    "text": "В каком времени стоит глагол «побежим»?",
+    "options": [
+      "Настоящем",
+      "Прошедшем",
+      "Будущем",
+      "Вне времени"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 131,
+    "text": "Что такое деепричастие?",
+    "options": [
+      "Особая форма глагола",
+      "Самостоятельная часть речи",
+      "Признак предмета",
+      "Имя существительное"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 132,
+    "text": "На какие вопросы отвечает деепричастие?",
+    "options": [
+      "Что делая? Что сделав?",
+      "Какой? Какая?",
+      "Кем? Чем?",
+      "Где? Куда?"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 133,
+    "text": "Причастие объединяет в себе признаки...",
+    "options": [
+      "Существительного и глагола",
+      "Глагола и прилагательного",
+      "Наречия и глагола",
+      "Местоимения и прилагательного"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 134,
+    "text": "Выберите действительное причастие настоящего времени",
+    "options": [
+      "Прочитанный",
+      "Читающий",
+      "Читаемый",
+      "Прочитавший"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 135,
+    "text": "Выберите страдательное причастие прошедшего времени",
+    "options": [
+      "Рисующий",
+      "Рисуемый",
+      "Нарисованный",
+      "Нарисовавший"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 136,
+    "text": "Чем деепричастие отличается от причастия?",
+    "options": [
+      "Изменяется по родам",
+      "Склоняется",
+      "Не изменяется",
+      "Имеет краткую форму"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 137,
+    "text": "В каком предложении есть деепричастный оборот?",
+    "options": [
+      "Мальчик, читающий книгу",
+      "Читая книгу, он уснул",
+      "Книга была прочитана",
+      "Он читал интересную книгу"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 138,
+    "text": "Как обособляется причастный оборот, стоящий после определяемого слова?",
+    "options": [
+      "Запятыми",
+      "Тире",
+      "Двоеточием",
+      "Не обособляется"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 139,
+    "text": "Укажите деепричастие совершенного вида",
+    "options": [
+      "Играя",
+      "Смотря",
+      "Увидев",
+      "Читая"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 140,
+    "text": "Какую синтаксическую роль чаще всего выполняет деепричастие?",
+    "options": [
+      "Подлежащее",
+      "Обстоятельство",
+      "Определение",
+      "Дополнение"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 141,
+    "text": "Сколько падежей в русском языке?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "4"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 142,
+    "text": "На какие вопросы отвечает Творительный падеж?",
+    "options": [
+      "Кого? Что?",
+      "Кем? Чем?",
+      "О ком? О чем?",
+      "Кому? Чему?"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 143,
+    "text": "К какому склонению относится слово «дочь»?",
+    "options": [
+      "1 склонение",
+      "2 склонение",
+      "3 склонение",
+      "Разносклоняемое"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 144,
+    "text": "Какое существительное относится ко 2 склонению?",
+    "options": [
+      "Книга",
+      "Окно",
+      "Ночь",
+      "Собака"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 145,
+    "text": "Укажите разносклоняемое существительное",
+    "options": [
+      "Имя",
+      "Путь",
+      "Время",
+      "Все ответы верны"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 146,
+    "text": "Слово «пальто» является...",
+    "options": [
+      "Склоняемым",
+      "Несклоняемым",
+      "Разносклоняемым",
+      "Глаголом"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 147,
+    "text": "Существительные, имеющие форму только множественного числа...",
+    "options": [
+      "Стол, стул",
+      "Ножницы, брюки",
+      "Окно, море",
+      "Книга, ручка"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 148,
+    "text": "Укажите одушевленное существительное",
+    "options": [
+      "Дерево",
+      "Стол",
+      "Собака",
+      "Книга"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 149,
+    "text": "Определите род существительного «кофе»",
+    "options": [
+      "Мужской",
+      "Женский",
+      "Средний",
+      "Общий"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 150,
+    "text": "К какому роду относится существительное «сирота»?",
+    "options": [
+      "Мужской",
+      "Женский",
+      "Средний",
+      "Общий"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 151,
+    "text": "Что относится к служебным частям речи?",
+    "options": [
+      "Существительное",
+      "Предлог",
+      "Глагол",
+      "Прилагательное"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 152,
+    "text": "Какую функцию выполняет союз?",
+    "options": [
+      "Связывает слова и части предложения",
+      "Обозначает предмет",
+      "Выражает эмоции",
+      "Служит для счета"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 153,
+    "text": "Укажите производный предлог",
+    "options": [
+      "В",
+      "На",
+      "В течение",
+      "С"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 154,
+    "text": "Укажите сочинительный союз",
+    "options": [
+      "И",
+      "Что",
+      "Чтобы",
+      "Потому что"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 155,
+    "text": "Укажите подчинительный союз",
+    "options": [
+      "И",
+      "А",
+      "Но",
+      "Чтобы"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 156,
+    "text": "Что выражает междометие?",
+    "options": [
+      "Связь слов",
+      "Время",
+      "Признак",
+      "Эмоции и чувства"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 157,
+    "text": "Укажите частицу",
+    "options": [
+      "Ох",
+      "Бы",
+      "На",
+      "И"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 158,
+    "text": "Какая часть речи не является членом предложения?",
+    "options": [
+      "Существительное",
+      "Частица",
+      "Глагол",
+      "Местоимение"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 159,
+    "text": "Слово «несмотря на» это...",
+    "options": [
+      "Союз",
+      "Предлог",
+      "Междометие",
+      "Частица"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 160,
+    "text": "Союз «однако» является...",
+    "options": [
+      "Соединительным",
+      "Разделительным",
+      "Противительным",
+      "Подчинительным"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 161,
+    "text": "Какое предложение является простым?",
+    "options": [
+      "Наступила осень, и пошли дожди",
+      "Ветер дул с моря",
+      "Когда я проснулся, светило солнце",
+      "Я знаю, что он придет"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 162,
+    "text": "Что составляет грамматическую основу предложения?",
+    "options": [
+      "Определение и дополнение",
+      "Подлежащее и сказуемое",
+      "Обстоятельство и сказуемое",
+      "Подлежащее и определение"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 163,
+    "text": "В каком предложении подлежащее выражено местоимением?",
+    "options": [
+      "Мальчик бежит",
+      "Солнце светит",
+      "Он быстро ушел",
+      "Книга лежит на столе"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 164,
+    "text": "Какое предложение называется сложным?",
+    "options": [
+      "Имеющее одну основу",
+      "Имеющее две и более основ",
+      "С однородными членами",
+      "Вопросительное"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 165,
+    "text": "Укажите сложносочиненное предложение",
+    "options": [
+      "Гремел гром, и сверкала молния",
+      "Я верю, что мы победим",
+      "Если будет дождь, мы останемся дома",
+      "Светало."
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 166,
+    "text": "Укажите сложноподчиненное предложение",
+    "options": [
+      "День был теплый, светило солнце",
+      "Я сказал, чтобы он пришел",
+      "Мы пели и танцевали",
+      "Шел снег."
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 167,
+    "text": "Как называются второстепенные члены предложения?",
+    "options": [
+      "Подлежащее, сказуемое",
+      "Существительное, глагол",
+      "Дополнение, определение, обстоятельство",
+      "Приставка, корень, суффикс"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 168,
+    "text": "Какой член предложения отвечает на вопросы косвенных падежей?",
+    "options": [
+      "Определение",
+      "Дополнение",
+      "Обстоятельство",
+      "Сказуемое"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 169,
+    "text": "Предложение без второстепенных членов называется...",
+    "options": [
+      "Распространенным",
+      "Нераспространенным",
+      "Сложным",
+      "Безличным"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 170,
+    "text": "Однородными называются члены предложения, которые...",
+    "options": [
+      "Отвечают на один и тот же вопрос",
+      "Относятся к одному слову",
+      "Выполняют одинаковую роль",
+      "Все ответы верны"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 171,
+    "text": "Сколько гласных букв в русском алфавите?",
+    "options": [
+      "10",
+      "33",
+      "21",
+      "6"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 172,
+    "text": "Сколько согласных звуков в русском языке?",
+    "options": [
+      "33",
+      "21",
+      "36",
+      "42"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 173,
+    "text": "Какие буквы не обозначают звуков?",
+    "options": [
+      "А, О",
+      "Й, Ь",
+      "Ъ, Ь",
+      "Е, Ё"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 174,
+    "text": "Какие согласные звуки всегда твердые?",
+    "options": [
+      "[ж], [ш], [ц]",
+      "[ч'], [щ'], [й']",
+      "[б], [в], [г]",
+      "[м], [н], [л]"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 175,
+    "text": "Какие согласные звуки всегда мягкие?",
+    "options": [
+      "[ж], [ш], [ц]",
+      "[ч'], [щ'], [й']",
+      "[д], [т], [з]",
+      "[р], [п], [ф]"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 176,
+    "text": "В каком слове букв больше, чем звуков?",
+    "options": [
+      "Яблоко",
+      "Ель",
+      "День",
+      "Маяк"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 177,
+    "text": "В каком слове звуков больше, чем букв?",
+    "options": [
+      "Ёжик",
+      "Конь",
+      "Стол",
+      "Печь"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 178,
+    "text": "Какие гласные буквы могут обозначать два звука?",
+    "options": [
+      "А, О, У, Э",
+      "Е, Ё, Ю, Я",
+      "И, Ы",
+      "А, Я"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 179,
+    "text": "Что такое синонимы?",
+    "options": [
+      "Слова, разные по значению",
+      "Слова, близкие по значению",
+      "Слова с противоположным значением",
+      "Одинаково звучащие слова"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 180,
+    "text": "Что такое антонимы?",
+    "options": [
+      "Слова с противоположным значением",
+      "Слова, близкие по значению",
+      "Одинаково звучащие слова",
+      "Устаревшие слова"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 181,
+    "text": "Что такое омонимы?",
+    "options": [
+      "Слова, близкие по значению",
+      "Слова с противоположным значением",
+      "Одинаково звучащие, но разные по значению",
+      "Новые слова"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 182,
+    "text": "Укажите антоним к слову «холодный»",
+    "options": [
+      "Морозный",
+      "Ледяной",
+      "Горячий",
+      "Свежий"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 183,
+    "text": "Укажите синоним к слову «смелый»",
+    "options": [
+      "Трусливый",
+      "Храбрый",
+      "Слабый",
+      "Тихий"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 184,
+    "text": "Слова «коса» (инструмент) и «коса» (прическа) это...",
+    "options": [
+      "Синонимы",
+      "Антонимы",
+      "Омонимы",
+      "Паронимы"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 185,
+    "text": "Что изучает лексикология?",
+    "options": [
+      "Звуки речи",
+      "Словарный состав языка",
+      "Части речи",
+      "Члены предложения"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 186,
+    "text": "Фразеологизмы это...",
+    "options": [
+      "Устойчивые сочетания слов",
+      "Слова иностранного происхождения",
+      "Устаревшие слова",
+      "Новые слова"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 187,
+    "text": "Что означает фразеологизм «бить баклуши»?",
+    "options": [
+      "Работать",
+      "Бездельничать",
+      "Бежать",
+      "Кричать"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 188,
+    "text": "Укажите заимствованное слово",
+    "options": [
+      "Мать",
+      "Брат",
+      "Компьютер",
+      "Дом"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 189,
+    "text": "Неологизмы это...",
+    "options": [
+      "Устаревшие слова",
+      "Новые слова",
+      "Профессиональные слова",
+      "Диалектные слова"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 190,
+    "text": "Архаизмы это...",
+    "options": [
+      "Новые слова",
+      "Устаревшие слова",
+      "Заимствованные слова",
+      "Жаргонизмы"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 191,
+    "text": "Укажите правильный перевод слова «kitob»",
+    "options": [
+      "Тетрадь",
+      "Ручка",
+      "Книга",
+      "Карандаш"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 192,
+    "text": "Укажите правильный перевод слова «maktab»",
+    "options": [
+      "Университет",
+      "Школа",
+      "Садик",
+      "Институт"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 193,
+    "text": "Как переводится фраза «Men o'quvchiman»?",
+    "options": [
+      "Я работаю",
+      "Я студент",
+      "Я ученик",
+      "Я учитель"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 194,
+    "text": "Сколько слогов в слове «университет»?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 195,
+    "text": "На какой слог падает ударение в слове «алфавит»?",
+    "options": [
+      "На первый",
+      "На второй",
+      "На третий",
+      "На четвертый"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 196,
+    "text": "В каком слове пишется буква «о»?",
+    "options": [
+      "М..локо",
+      "В..да",
+      "С..бака",
+      "К..рова"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 197,
+    "text": "В каком слове пишется буква «а»?",
+    "options": [
+      "М..шина",
+      "К..рова",
+      "Д..рога",
+      "Г..род"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 198,
+    "text": "Укажите слово с проверяемой безударной гласной в корне",
+    "options": [
+      "Собака",
+      "Вода",
+      "Карандаш",
+      "Вокзал"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 199,
+    "text": "Укажите словарное слово",
+    "options": [
+      "Лесной",
+      "Водяной",
+      "Собака",
+      "Бежать"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 200,
+    "text": "Какое слово лишнее?",
+    "options": [
+      "Стол",
+      "Стул",
+      "Шкаф",
+      "Яблоко"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 201,
+    "text": "Как называется часть слова без окончания?",
+    "options": [
+      "Корень",
+      "Основа",
+      "Суффикс",
+      "Приставка"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 202,
+    "text": "Что такое корень слова?",
+    "options": [
+      "Изменяемая часть слова",
+      "Главная значимая часть слова",
+      "Часть слова перед корнем",
+      "Часть слова после корня"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 203,
+    "text": "Что такое приставка?",
+    "options": [
+      "Часть слова после корня",
+      "Изменяемая часть слова",
+      "Часть слова перед корнем",
+      "Главная значимая часть"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 204,
+    "text": "Что такое суффикс?",
+    "options": [
+      "Часть слова после корня",
+      "Часть слова перед корнем",
+      "Главная значимая часть",
+      "Изменяемая часть слова"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 205,
+    "text": "Укажите слово с нулевым окончанием",
+    "options": [
+      "Стол",
+      "Книга",
+      "Окно",
+      "Море"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 206,
+    "text": "Укажите слово, состоящее только из корня и окончания",
+    "options": [
+      "Поездка",
+      "Лесной",
+      "Вода",
+      "Пригород"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 207,
+    "text": "В каком слове есть приставка?",
+    "options": [
+      "Полет",
+      "Лесник",
+      "Книга",
+      "Светлый"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 208,
+    "text": "В каком слове есть суффикс?",
+    "options": [
+      "Домик",
+      "Выход",
+      "Вода",
+      "Стол"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 209,
+    "text": "Слова с одним и тем же корнем называются...",
+    "options": [
+      "Синонимами",
+      "Антонимами",
+      "Однокоренными (родственными)",
+      "Омонимами"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 210,
+    "text": "Укажите лишнее слово",
+    "options": [
+      "Лес",
+      "Лесной",
+      "Лесник",
+      "Лестница"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 211,
+    "text": "Что изучает морфология?",
+    "options": [
+      "Звуки речи",
+      "Части речи",
+      "Члены предложения",
+      "Словарный состав"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 212,
+    "text": "Что изучает синтаксис?",
+    "options": [
+      "Части речи",
+      "Словарный состав",
+      "Словосочетания и предложения",
+      "Части слова"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 213,
+    "text": "Что изучает пунктуация?",
+    "options": [
+      "Правила написания слов",
+      "Правила постановки знаков препинания",
+      "Звуки речи",
+      "Части слова"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 214,
+    "text": "Что изучает орфография?",
+    "options": [
+      "Правила постановки знаков препинания",
+      "Словарный состав",
+      "Правила написания слов",
+      "Члены предложения"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 215,
+    "text": "Что изучает фонетика?",
+    "options": [
+      "Звуки речи",
+      "Части речи",
+      "Словарный состав",
+      "Правила написания"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 216,
+    "text": "Укажите слово, в котором верно выделена буква, обозначающая ударный гласный звук",
+    "options": [
+      "кАталог",
+      "звОнит",
+      "красивЕе",
+      "тОрты"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 217,
+    "text": "Укажите слово, в котором верно выделена буква, обозначающая ударный гласный звук",
+    "options": [
+      "договОр",
+      "пОнял",
+      "свЕкла",
+      "нАчался"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 218,
+    "text": "Укажите слово, в котором пишется буква И",
+    "options": [
+      "Ц..рк",
+      "Ц..пленок",
+      "Ц..ган",
+      "Ц..ц"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 219,
+    "text": "Укажите слово, в котором пишется буква Ы",
+    "options": [
+      "Ц..фра",
+      "Ц..ркуль",
+      "Ц..ган",
+      "Медиц..на"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 220,
+    "text": "В каком слове после шипящей пишется буква О?",
+    "options": [
+      "Ш..пот",
+      "Ч..рный",
+      "Ш..в",
+      "Щ..тка"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 221,
+    "text": "В каком слове пишется твердый знак (Ъ)?",
+    "options": [
+      "В..юга",
+      "С..емка",
+      "П..еса",
+      "Сем..я"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 222,
+    "text": "В каком слове пишется мягкий знак (Ь)?",
+    "options": [
+      "С..езд",
+      "Об..явление",
+      "Дерев..я",
+      "Под..езд"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 223,
+    "text": "Какое слово пишется с большой буквы?",
+    "options": [
+      "(М)осква",
+      "(Г)ород",
+      "(У)лица",
+      "(Р)ека"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 224,
+    "text": "Какое слово пишется с большой буквы?",
+    "options": [
+      "(П)оэт",
+      "(А)лександр",
+      "(П)исатель",
+      "(Ч)еловек"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 225,
+    "text": "Какое словосочетание написано неверно?",
+    "options": [
+      "Жили-были",
+      "Кое-кто",
+      "Что-то",
+      "По моему (мнению)"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 226,
+    "text": "Выберите правильный вариант: Он пошел (в) школу.",
+    "options": [
+      "вшколу",
+      "в школу",
+      "в-школу",
+      "в_школу"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 227,
+    "text": "Выберите правильный вариант: (Не) знал.",
+    "options": [
+      "Незнал",
+      "Не знал",
+      "Не-знал",
+      "Не_знал"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 228,
+    "text": "Какое существительное относится к мужскому роду?",
+    "options": [
+      "Тетрадь",
+      "Окно",
+      "День",
+      "Ночь"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 229,
+    "text": "Какое существительное относится к женскому роду?",
+    "options": [
+      "Стол",
+      "Солнце",
+      "Радость",
+      "Поле"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 230,
+    "text": "Какое существительное относится к среднему роду?",
+    "options": [
+      "Книга",
+      "Время",
+      "День",
+      "Ночь"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 231,
+    "text": "Определите число существительного «ножницы»",
+    "options": [
+      "Единственное",
+      "Множественное",
+      "Только множественное",
+      "Только единственное"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 232,
+    "text": "Определите число существительного «молоко»",
+    "options": [
+      "Множественное",
+      "Единственное",
+      "Только единственное",
+      "Только множественное"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 233,
+    "text": "В каком падеже стоит существительное в предложении: Я вижу книгу?",
+    "options": [
+      "Именительный",
+      "Родительный",
+      "Винительный",
+      "Дательный"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 234,
+    "text": "В каком падеже стоит существительное в предложении: У меня нет ручки?",
+    "options": [
+      "Винительный",
+      "Дательный",
+      "Именительный",
+      "Родительный"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 235,
+    "text": "К какому спряжению относится глагол «летать»?",
+    "options": [
+      "I спряжение",
+      "II спряжение",
+      "Разноспрягаемый",
+      "Особого спряжения"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 236,
+    "text": "К какому спряжению относится глагол «любить»?",
+    "options": [
+      "I спряжение",
+      "II спряжение",
+      "Разноспрягаемый",
+      "Особого спряжения"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 237,
+    "text": "Укажите глагол-исключение",
+    "options": [
+      "Читать",
+      "Писать",
+      "Дышать",
+      "Думать"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 238,
+    "text": "В каком наклонении глагол обозначает реальное действие?",
+    "options": [
+      "Повелительное",
+      "Изъявительное",
+      "Условное",
+      "Сослагательное"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 239,
+    "text": "Какой предлог употребляется с предложным падежом?",
+    "options": [
+      "У",
+      "К",
+      "О (об)",
+      "С"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 240,
+    "text": "Какой предлог употребляется с дательным падежом?",
+    "options": [
+      "В",
+      "К",
+      "На",
+      "За"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 241,
+    "text": "Грамматическая основа предложения – это...",
+    "options": [
+      "Подлежащее",
+      "Сказуемое",
+      "Подлежащее и сказуемое",
+      "Второстепенные члены"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 242,
+    "text": "Что обозначает подлежащее?",
+    "options": [
+      "Действие",
+      "Признак",
+      "Предмет, о котором говорится",
+      "Место действия"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 243,
+    "text": "Что обозначает сказуемое?",
+    "options": [
+      "Предмет",
+      "Действие или признак подлежащего",
+      "Время действия",
+      "Признак предмета"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 244,
+    "text": "Чем чаще всего выражается подлежащее?",
+    "options": [
+      "Глаголом",
+      "Наречием",
+      "Существительным или местоимением",
+      "Предлогом"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 245,
+    "text": "Чем чаще всего выражается сказуемое?",
+    "options": [
+      "Существительным",
+      "Глаголом",
+      "Прилагательным",
+      "Местоимением"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 246,
+    "text": "Какое предложение называется повествовательным?",
+    "options": [
+      "В котором содержится вопрос",
+      "В котором содержится сообщение",
+      "В котором содержится приказ",
+      "В котором выражаются сильные эмоции"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 247,
+    "text": "Какое предложение называется вопросительным?",
+    "options": [
+      "В котором содержится сообщение",
+      "В котором содержится приказ",
+      "В котором содержится вопрос",
+      "В котором выражаются эмоции"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 248,
+    "text": "Какое предложение называется побудительным?",
+    "options": [
+      "В котором содержится сообщение",
+      "В котором содержится эмоция",
+      "В котором содержится вопрос",
+      "В котором содержится приказ, просьба"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 249,
+    "text": "Какое предложение называется восклицательным?",
+    "options": [
+      "В котором содержится вопрос",
+      "В котором выражаются сильные эмоции",
+      "В котором содержится приказ",
+      "В котором содержится сообщение"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 250,
+    "text": "Укажите предложение с прямой речью",
+    "options": [
+      "Он сказал, что придет.",
+      "«Я приду», - сказал он.",
+      "Мы спросили о его планах.",
+      "Они говорили тихо."
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 251,
+    "text": "Укажите предложение с косвенной речью",
+    "options": [
+      "Он сказал: «Я устал».",
+      "Мама спросила: «Где ты был?».",
+      "Он сказал, что устал.",
+      "«Пошли домой», - предложил друг."
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 252,
+    "text": "В каком слове правильно поставлено ударение?",
+    "options": [
+      "звОнит",
+      "звонИт",
+      "звОнишь",
+      "позвОнит"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 253,
+    "text": "В каком слове правильно поставлено ударение?",
+    "options": [
+      "тОрты",
+      "тортЫ",
+      "тОрта",
+      "тОртом"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 254,
+    "text": "Укажите слово с непроверяемой безударной гласной в корне (словарное слово)",
+    "options": [
+      "Водяной",
+      "Карандаш",
+      "Смотреть",
+      "Грибочек"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 255,
+    "text": "Укажите слово с чередующейся гласной в корне",
+    "options": [
+      "Растущий",
+      "Домашний",
+      "Лесной",
+      "Водяной"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 256,
+    "text": "В каком слове пишется буква З на конце приставки?",
+    "options": [
+      "Ра..писание",
+      "Бе..шумный",
+      "Ра..будить",
+      "В..карабкаться"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 257,
+    "text": "В каком слове пишется буква С на конце приставки?",
+    "options": [
+      "Ра..дать",
+      "Бе..крайний",
+      "В..дохнуть",
+      "И..гнать"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 258,
+    "text": "После Ц пишется буква И в слове...",
+    "options": [
+      "Ц..ган",
+      "Ц..плёнок",
+      "Станц..я",
+      "Ц..ц"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 259,
+    "text": "В каких случаях пишется Ъ знак?",
+    "options": [
+      "Перед согласными",
+      "После приставок на согласную перед Е, Ё, Ю, Я",
+      "В конце слова",
+      "После гласных"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 260,
+    "text": "Выберите предложение с обращением",
+    "options": [
+      "Он пришел домой.",
+      "Привет, Сергей!",
+      "Я вижу тебя.",
+      "Мы идем в кино."
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 261,
+    "text": "Обращение – это...",
+    "options": [
+      "Слово или словосочетание, называющее того, к кому обращаются с речью",
+      "Главный член предложения",
+      "Второстепенный член предложения",
+      "Часть речи"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 262,
+    "text": "Является ли обращение членом предложения?",
+    "options": [
+      "Да, подлежащим",
+      "Да, дополнением",
+      "Нет, не является",
+      "Да, обстоятельством"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 263,
+    "text": "Вводные слова – это...",
+    "options": [
+      "Слова, выражающие отношение говорящего к высказыванию",
+      "Слова, связывающие части предложения",
+      "Главные члены предложения",
+      "Второстепенные члены предложения"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 264,
+    "text": "Выберите предложение с вводным словом",
+    "options": [
+      "Он точно придет.",
+      "К счастью, дождь закончился.",
+      "Это был хороший день.",
+      "Завтра мы уезжаем."
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 265,
+    "text": "Выделяются ли вводные слова на письме запятыми?",
+    "options": [
+      "Да, всегда",
+      "Нет, никогда",
+      "Только в начале предложения",
+      "Только в конце предложения"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 266,
+    "text": "Укажите вид предложения по цели высказывания: Дети, идите домой!",
+    "options": [
+      "Повествовательное",
+      "Вопросительное",
+      "Побудительное",
+      "Восклицательное"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 267,
+    "text": "Укажите существительное первого склонения",
+    "options": [
+      "Конь",
+      "Ночь",
+      "Дорога",
+      "Окно"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 268,
+    "text": "Укажите существительное второго склонения",
+    "options": [
+      "Земля",
+      "Поле",
+      "Радость",
+      "Семья"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 269,
+    "text": "Укажите существительное третьего склонения",
+    "options": [
+      "Дочь",
+      "Дядя",
+      "Солнце",
+      "Здание"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 270,
+    "text": "Какая значимая часть слова стоит после корня и служит для образования новых слов?",
+    "options": [
+      "Приставка",
+      "Окончание",
+      "Суффикс",
+      "Основа"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 271,
+    "text": "Какая значимая часть слова стоит перед корнем?",
+    "options": [
+      "Суффикс",
+      "Приставка",
+      "Окончание",
+      "Основа"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 272,
+    "text": "Выберите правильно написанное слово",
+    "options": [
+      "Парошут",
+      "Жюри",
+      "Брошура",
+      "Цыфра"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 273,
+    "text": "Выберите правильно написанное слово",
+    "options": [
+      "Искувство",
+      "Искуство",
+      "Искусство",
+      "Искусттво"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 274,
+    "text": "В каком слове пишется НН?",
+    "options": [
+      "Стекля..ый",
+      "Кожа..ый",
+      "Глиня..ый",
+      "Серебря..ый"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 275,
+    "text": "В каком слове пишется Н?",
+    "options": [
+      "Деревя..ый",
+      "Оловя..ый",
+      "Песча..ый",
+      "Карти..ый"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 276,
+    "text": "Выберите слово с чередованием в корне (А/О)",
+    "options": [
+      "Растение",
+      "Вода",
+      "Гора",
+      "Лесник"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 277,
+    "text": "Выберите слово с чередованием в корне (Е/И)",
+    "options": [
+      "Замирать",
+      "Летать",
+      "Смотреть",
+      "Вертеть"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 278,
+    "text": "Какое местоимение употреблено неверно?",
+    "options": [
+      "Ихний дом",
+      "Его книга",
+      "Ее сумка",
+      "Их машина"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 279,
+    "text": "Укажите местоимение, которое пишется через дефис",
+    "options": [
+      "(Ни)кто",
+      "(Кое)как",
+      "(Что)то",
+      "(Не)что"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 280,
+    "text": "В каком слове НЕ пишется слитно?",
+    "options": [
+      "(Не)видел",
+      "(Не)знал",
+      "(Не)годовать",
+      "(Не)читал"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 281,
+    "text": "В каком слове НЕ пишется раздельно?",
+    "options": [
+      "(Не)взлюбить",
+      "(Не)здоровится",
+      "(Не)смог",
+      "(Не)доумевать"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 282,
+    "text": "Укажите глагол-исключение",
+    "options": [
+      "Терпеть",
+      "Желать",
+      "Читать",
+      "Мечтать"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 283,
+    "text": "Укажите правильный вариант: Мы (по)шли (в) лес.",
+    "options": [
+      "Пошли в лес",
+      "Пошли влес",
+      "По шли в лес",
+      "По-шли в лес"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 284,
+    "text": "Какое слово обозначает действие предмета?",
+    "options": [
+      "Красный",
+      "Бежать",
+      "Стул",
+      "Быстро"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 285,
+    "text": "Какое слово обозначает признак предмета?",
+    "options": [
+      "Стол",
+      "Читать",
+      "Красивый",
+      "Там"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "id": 286,
+    "text": "Какое слово обозначает предмет?",
+    "options": [
+      "Дерево",
+      "Резкий",
+      "Прыгать",
+      "Вчера"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 287,
+    "text": "Слог – это...",
+    "options": [
+      "Часть слова",
+      "Минимальная единица произнесения звуков",
+      "Звук",
+      "Слово"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 288,
+    "text": "Если в слове два гласных звука, сколько в нем слогов?",
+    "options": [
+      "Один",
+      "Два",
+      "Три",
+      "Четыре"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 289,
+    "text": "Что делает твердый знак (Ъ) в слове?",
+    "options": [
+      "Разделяет согласный и гласный",
+      "Смягчает согласный",
+      "Показывает ударение",
+      "Ничего не делает"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 290,
+    "text": "Что делает мягкий знак (Ь) в слове «день»?",
+    "options": [
+      "Разделяет звуки",
+      "Смягчает предыдущий согласный",
+      "Обозначает звук",
+      "Делает слово женского рода"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 291,
+    "text": "Где ставится запятая перед союзом А?",
+    "options": [
+      "Всегда",
+      "Никогда",
+      "Только в начале предложения",
+      "Может не ставиться"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 292,
+    "text": "Где ставится запятая перед союзом И?",
+    "options": [
+      "При однородных членах (одиночный союз)",
+      "Между частями сложного предложения",
+      "В начале предложения",
+      "Никогда"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 293,
+    "text": "Когда пишется жи-ши?",
+    "options": [
+      "С буквой Ы",
+      "С буквой И",
+      "С буквой Е",
+      "С буквой Я"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 294,
+    "text": "Когда пишется ча-ща?",
+    "options": [
+      "С буквой Я",
+      "С буквой А",
+      "С буквой Ю",
+      "С буквой У"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 295,
+    "text": "Когда пишется чу-щу?",
+    "options": [
+      "С буквой Ю",
+      "С буквой У",
+      "С буквой Я",
+      "С буквой А"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 296,
+    "text": "Укажите существительные мужского рода",
+    "options": [
+      "окно, поле, слово",
+      "карта, почва, земля",
+      "юноша, сирота, школа",
+      "портфель, дядя, мужчина"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 297,
+    "text": "Укажите существительные женского рода",
+    "options": [
+      "карта, почва, зима",
+      "судья, дядя, мужчина",
+      "окно, поле, слово",
+      "юноша, сирота, дедушка"
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "id": 298,
+    "text": "Укажите существительные женского рода",
+    "options": [
+      "юноша, сирота, дедушка",
+      "судья, дядя, мужчина",
+      "окно, поле, слово",
+      "карта, почва, земля"
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "id": 299,
+    "text": "Укажите существительные среднего рода",
+    "options": [
+      "судья, дядя, мужчина",
+      "окно, поле, слово",
+      "карта, почва, земля",
+      "юноша, сирота, дедушка"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "id": 300,
+    "text": "Вставьте предлог: Мы сидим …….. уроке",
+    "options": [
+      "для",
+      "к",
+      "на",
+      "от"
+    ],
+    "correctAnswer": 2
+  }
 ];
 
-// Shuffle the questions in-place by randomly swapping correctAnswer index
-allQuestions.forEach(q => {
-  // Randomly pick a new index for the correct answer
-  const correctIdx = q.correctAnswer;
-  const newCorrectIdx = Math.floor(Math.random() * q.options.length);
+export const totalVariants = Math.floor(allQuestions.length / 30);
 
-  // Swap the options text
-  const temp = q.options[correctIdx];
-  q.options[correctIdx] = q.options[newCorrectIdx];
-  q.options[newCorrectIdx] = temp;
-
-  // Update correctAnswer index
-  q.correctAnswer = newCorrectIdx;
-});
-
-export const getQuestionsByVariant = (variant: number): Question[] => {
-  const start = (variant - 1) * 50;
-  return allQuestions.slice(start, start + 50);
-};
-
-export const totalVariants = Math.ceil(allQuestions.length / 50);
+export function getQuestionsByVariant(variant: number): Question[] {
+  const startIndex = (variant - 1) * 30;
+  const endIndex = startIndex + 30;
+  return allQuestions.slice(startIndex, endIndex);
+}
