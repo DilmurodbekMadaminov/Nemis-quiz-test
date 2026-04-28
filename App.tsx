@@ -112,8 +112,8 @@ const App: React.FC = () => {
             <div className="inline-flex p-3 bg-blue-600 rounded-2xl mb-4 shadow-lg shadow-blue-200">
               <Trophy className="text-white w-8 h-8" />
             </div>
-            <h1 className="text-3xl font-bold text-slate-900 mb-2">AKT Quiz</h1>
-            <p className="text-slate-500">Iqtisodiyotda axborot tizimlari (250 ta savol)</p>
+            <h1 className="text-3xl font-bold text-slate-900 mb-2">Rus tili quiz</h1>
+            <p className="text-slate-500">Rus tili fanidan</p>
           </header>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
